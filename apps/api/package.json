@@ -1,3 +1,11 @@
 {
-  "name": "api"
+  "name": "api",
+  "type": "module",
+  "dependencies": {
+    "h3": "^1.0.2",
+    "listhen": "^1.0.1"
+  },
+  "devDependencies": {
+    "typescript": "~4.9.4"
+  }
 }
