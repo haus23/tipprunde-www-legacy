@@ -7,6 +7,13 @@ export const meta: MetaFunction = () => ({
   viewport: 'width=device-width,initial-scale=1',
 });
 
+export async function loader() {
+  const response = await fetch(`${process.env.API_URL}/championships`);
+  return response.json();
+}
+
+export const shouldRevalidate = () => false;
+
 export default function App() {
   return (
     <html lang="de">
