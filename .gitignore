@@ -7,3 +7,8 @@ node_modules/
 # Nitropack
 .nitro/
 .output/
+
+# Remix
+.cache/
+build/
+public/build/
