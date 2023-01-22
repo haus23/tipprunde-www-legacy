@@ -3,3 +3,7 @@ node_modules/
 
 # Sensible data
 .env
+
+# Nitropack
+.nitro/
+.output/
