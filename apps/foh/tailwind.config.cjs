@@ -1,3 +1,5 @@
+const radixColors = require('radix-colors-plugin');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./app/**/*.{ts,tsx}'],
@@ -5,5 +7,5 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [radixColors({ colors: ['mauve', 'violet'] })],
 };

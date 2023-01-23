@@ -20,7 +20,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="bg-radix-mauve1 text-radix-mauve12">
         <Outlet />
         <ScrollRestoration />
         <Scripts />
