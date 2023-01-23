@@ -1,4 +1,4 @@
-import { json, type LoaderArgs } from '@remix-run/node';
+import type { LoaderArgs } from '@remix-run/node';
 import {
   Link,
   NavLink,
@@ -7,16 +7,35 @@ import {
   type ShouldRevalidateFunction,
 } from '@remix-run/react';
 
-export async function loader({ params }: LoaderArgs) {
-  const championshipsResponse = await fetch(`${process.env.API_URL}/championships`);
-  const championships = await championshipsResponse.json();
+import type { Championship, Ranking } from 'dtp-types';
+import { getChampionships } from '~/queries/get-championships';
+import { getRanking } from '~/queries/get-ranking';
 
-  const championshipId = params.championshipId ?? championships[0].id;
+export type Standings = Ranking & {
+  championships: Championship[];
+  championship: Championship;
+};
 
-  const rankingResponse = await fetch(`${process.env.API_URL}/ranking/${championshipId}`);
-  const ranking = await rankingResponse.json();
+export async function loader({ params }: LoaderArgs): Promise<Standings> {
+  const { championships, currentChampionship } = await getChampionships();
 
-  return json({ championships, ranking });
+  let championship: Championship | undefined;
+
+  if (params.championshipId) {
+    championship = championships.find((c) => c.id === params.championshipId);
+
+    if (!championship) {
+      throw new Response('Not Found', {
+        status: 404,
+      });
+    }
+  } else {
+    championship = currentChampionship;
+  }
+
+  const ranking = await getRanking(championship.id);
+
+  return { championship, championships, ...ranking };
 }
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({ currentParams, nextParams }) => {
@@ -24,13 +43,13 @@ export const shouldRevalidate: ShouldRevalidateFunction = ({ currentParams, next
 };
 
 export default function StandingsLayout() {
-  const { championships } = useLoaderData();
+  const { championships } = useLoaderData<typeof loader>();
   return (
     <div style={{ fontFamily: 'system-ui', fontWeight: 500, lineHeight: '1.4' }}>
       <header>
         <h1>runde.tips</h1>
         <ul>
-          {championships.map((c: any) => (
+          {championships.map((c) => (
             <li key={c.id}>
               <Link to={`/${c.id}`}>{c.name}</Link>
             </li>

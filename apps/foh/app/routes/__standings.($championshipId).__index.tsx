@@ -1,14 +1,12 @@
-import { useRouteLoaderData } from '@remix-run/react';
+import { useRanking } from '~/hooks/use-ranking';
 
 export default function Tabelle() {
-  const { ranking } = useRouteLoaderData('routes/__standings.($championshipId)') as {
-    ranking: any;
-  };
+  const { ranks } = useRanking();
 
   return (
     <div>
       <h2>Tabelle</h2>
-      {ranking.ranks.length}
+      {ranks.length}
     </div>
   );
 }
