@@ -1,4 +1,6 @@
-import { useAppData } from "./($championshipId)";
+import { useAppData } from './($championshipId)';
+
+export const handle = { view: 'spieler' };
 
 export default function Spieler() {
   useAppData();

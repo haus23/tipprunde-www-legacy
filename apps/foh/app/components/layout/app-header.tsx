@@ -1,6 +1,7 @@
 import { Link, NavLink } from '@remix-run/react';
 import { cn } from '~/utils/cn';
 import { Logo } from '../brand/logo';
+import { ChampionshipSwitch } from '../commands/championship-switch';
 import { ThemeSwitch } from '../commands/theme-switch';
 
 const navItems = [
@@ -29,7 +30,8 @@ export function AppHeader() {
           ))}
         </nav>
       </div>
-      <div>
+      <div className="flex items-center gap-x-2">
+        <ChampionshipSwitch />
         <ThemeSwitch />
       </div>
     </header>
