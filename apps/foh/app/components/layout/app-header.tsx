@@ -1,6 +1,7 @@
 import { Link, NavLink } from '@remix-run/react';
 import { cn } from '~/utils/cn';
 import { Logo } from '../brand/logo';
+import { ThemeSwitch } from '../commands/theme-switch';
 
 const navItems = [
   { label: 'Tabelle', routeSegment: '' },
@@ -27,6 +28,9 @@ export function AppHeader() {
             </NavLink>
           ))}
         </nav>
+      </div>
+      <div>
+        <ThemeSwitch />
       </div>
     </header>
   );
