@@ -15,10 +15,11 @@ export const meta: MetaFunction = () => ({
 
 export default function App() {
   return (
-    <html lang="de" className="dark">
+    <html lang="de" suppressHydrationWarning>
       <head>
         <Meta />
         <Links />
+        <script src="/theme.js"></script>
       </head>
       <body className="bg-radix-mauve1 text-radix-mauve12">
         <Outlet />
