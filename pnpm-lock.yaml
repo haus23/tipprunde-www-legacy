@@ -68,6 +68,15 @@ importers:
       typescript: 4.9.4
       unbuild: 1.1.1
 
+  packages/radix-colors-plugin:
+    specifiers:
+      '@radix-ui/colors': ^0.1.8
+      tailwindcss: ^3.2.4
+    dependencies:
+      '@radix-ui/colors': 0.1.8
+    devDependencies:
+      tailwindcss: 3.2.4_postcss@8.4.21
+
 packages:
 
   /@ampproject/remapping/2.2.0:
@@ -2404,6 +2413,10 @@ packages:
     resolution: {integrity: sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==}
     dev: false
     optional: true
+
+  /@radix-ui/colors/0.1.8:
+    resolution: {integrity: sha512-jwRMXYwC0hUo0mv6wGpuw254Pd9p/R6Td5xsRpOmaWkUHlooNWqVcadgyzlRumMq3xfOTXwJReU0Jv+EIy4Jbw==}
+    dev: false
 
   /@remix-run/dev/1.11.1_kbsvfewv4jwrmiyw4esgzjg2te:
     resolution: {integrity: sha512-8N7TRbJtNXKhU4pQwDGdEMDlOIJ1SqQdG1zZoIzU7Q7YfkdAI8/AOtXT7i2X6y5urjijtFUZEY6x8IVNhGAjbg==}
