@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "lib": ["ESNext"],
+    "target": "ESNext",
+    "strict": true,
+    "moduleResolution": "node",
+    "importsNotUsedAsValues": "error"
+  }
+}

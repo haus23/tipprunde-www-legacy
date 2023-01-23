@@ -1,3 +1,26 @@
 {
-  "name": "dtp-types"
+  "name": "dtp-types",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "unbuild --stub",
+    "build": "unbuild"
+  },
+  "dependencies": {
+    "zod": "^3.20.2"
+  },
+  "devDependencies": {
+    "typescript": "~4.9.4",
+    "unbuild": "^1.1.1"
+  }
 }
