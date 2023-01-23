@@ -1,4 +1,10 @@
 {
   "name": "tipprunde",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "dev:api": "pnpm --filter api run dev",
+    "dev:foh": "pnpm --filter foh run dev",
+    "build:types": "pnpm --filter dtp-types run build",
+    "build": "pnpm -r run build"
+  }
 }

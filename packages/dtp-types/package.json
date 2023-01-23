@@ -13,7 +13,6 @@
     "dist"
   ],
   "scripts": {
-    "dev": "unbuild --stub",
     "build": "unbuild"
   },
   "dependencies": {
