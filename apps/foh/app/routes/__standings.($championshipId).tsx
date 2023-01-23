@@ -47,7 +47,7 @@ export default function StandingsLayout() {
   return (
     <div style={{ fontFamily: 'system-ui', fontWeight: 500, lineHeight: '1.4' }}>
       <header>
-        <h1>runde.tips</h1>
+        <h1 className="text-xl font-semibold">runde.tips</h1>
         <ul>
           {championships.map((c) => (
             <li key={c.id}>
