@@ -1,4 +1,4 @@
-import { Rank } from '../model/rank';
+import { Rank } from 'dtp-types';
 import { db } from '../server/db';
 import { modelConverter } from '../server/model-converter';
 import type { ChampionshipPlayer } from '../server/model/championship-player';

@@ -1,4 +1,4 @@
-import { ChampionshipId } from '~/model/championship';
+import { ChampionshipId, Ranking } from 'dtp-types';
 import { getRanking } from '~/queries/get-ranking';
 
 export default eventHandler(async (event) => {
@@ -6,5 +6,5 @@ export default eventHandler(async (event) => {
   const ranks = await getRanking(championshipId);
   return {
     ranks,
-  };
+  } satisfies Ranking;
 });
