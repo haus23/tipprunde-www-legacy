@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
-export const Rank = z.object({
+export const ChampionshipPlayer = z.object({
+  id: z.string(),
   playerId: z.string(),
-  name: z.string(),
   nr: z.number(),
   points: z.number(),
   extraPoints: z.number(),
@@ -10,4 +10,4 @@ export const Rank = z.object({
   rank: z.number(),
 });
 
-export type Rank = z.infer<typeof Rank>;
+export type ChampionshipPlayer = z.infer<typeof ChampionshipPlayer>;
