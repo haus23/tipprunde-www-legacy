@@ -1,9 +1,9 @@
-import { useAppData } from './($championshipId)';
+import { useStandings } from '~/hooks/use-standings';
 
 export const handle = { view: 'spieler' };
 
 export default function Spieler() {
-  useAppData();
+  useStandings();
 
   return (
     <div>

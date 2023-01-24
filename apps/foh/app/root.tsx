@@ -1,5 +1,6 @@
-import type { MetaFunction } from '@remix-run/node';
+import type { LoaderArgs, MetaFunction } from '@remix-run/node';
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
+import { getMasterdata } from './queries/get-masterdata';
 
 import styles from './styles/app.css';
 
@@ -12,6 +13,12 @@ export const meta: MetaFunction = () => ({
   title: 'runde.tips',
   viewport: 'width=device-width,initial-scale=1',
 });
+
+export async function loader({ params }: LoaderArgs) {
+  return getMasterdata();
+}
+
+export const shouldRevalidate = () => false;
 
 export default function App() {
   return (

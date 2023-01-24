@@ -2,13 +2,13 @@ import { useNavigate } from '@remix-run/react';
 import { Fragment, useState } from 'react';
 import type { Championship } from 'dtp-types';
 
-import { useMatchesData } from '~/hooks/use-matches-data';
 import { CheckIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { Combobox, Dialog, Transition } from '@headlessui/react';
 import { cn } from '~/utils/cn';
+import { useMasterdata } from '~/hooks/use-masterdata';
 
 export function ChampionshipSwitch() {
-  const { championship, championships, view } = useMatchesData();
+  const { championship, championships, view } = useMasterdata();
 
   const navigate = useNavigate();
 
