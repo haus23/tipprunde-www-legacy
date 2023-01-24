@@ -1,29 +1,34 @@
-import { Rank } from 'dtp-types';
+import { Rank, Ranking } from 'dtp-types';
+import { logger } from '~/logger';
 import { db } from '../server/db';
 import { modelConverter } from '../server/model-converter';
 import type { ChampionshipPlayer } from '../server/model/championship-player';
-import type { Player } from '../server/model/player';
+import { getPlayers } from './get-players';
 
-export const getRanking = async (championshipId: string) => {
-  console.log('Query ranking', championshipId);
+export const getRanking = async (championshipId: string): Promise<Ranking> => {
 
-  const playersSnaphot = await db
-    .collection('players')
-    .withConverter(modelConverter<Player>())
-    .get();
-  const playersHash = playersSnaphot.docs
-    .map((doc) => doc.data())
-    .reduce((hash, entity) => ({ ...hash, [entity.id]: entity }), {} as Record<string, Player>);
+  let ranking = await useStorage().getItem(`db:ranking:${championshipId}`);
 
-  const championshipPlayersSnapshot = await db
-    .collection(`championships/${championshipId}/players`)
-    .withConverter(modelConverter<ChampionshipPlayer>())
-    .get();
+  if (!ranking) {
 
-  const ranks = championshipPlayersSnapshot.docs
-    .map((doc) => doc.data())
-    .map((cp) => Rank.parse({ ...cp, name: playersHash[cp.playerId].name }))
-    .sort((a, b) => a.rank - b.rank);
+    const players = await getPlayers();
 
-  return ranks;
+    logger.info(`Query ranking ${championshipId}`);
+
+    const championshipPlayersSnapshot = await db
+      .collection(`championships/${championshipId}/players`)
+      .withConverter(modelConverter<ChampionshipPlayer>())
+      .get();
+
+    const ranks = championshipPlayersSnapshot.docs
+      .map((doc) => doc.data())
+      .map((cp) => Rank.parse({ ...cp, name: players[cp.playerId].name }))
+      .sort((a, b) => a.rank - b.rank);
+
+    ranking = {
+      ranks,
+    } satisfies Ranking;
+    useStorage().setItem(`db:ranking:${championshipId}`, ranking)
+  }
+  return ranking;
 };

@@ -1,16 +1,24 @@
 import { Championship } from 'dtp-types';
+import { logger } from '~/logger';
 import { db } from '../server/db';
 import { modelConverter } from '../server/model-converter';
 
 export const getChampionships = async (): Promise<Championship[]> => {
-  console.log('Query championships');
+  let championships = await useStorage().getItem('db:championships');
 
-  const docsSnapshot = await db
-    .collection('championships')
-    .where('published', '==', true)
-    .orderBy('nr', 'desc')
-    .withConverter(modelConverter<Championship>())
-    .get();
+  if (!championships) {
+    logger.info('Query championships');
 
-  return docsSnapshot.docs.map((d) => Championship.parse(d.data()));
+    const docsSnapshot = await db
+      .collection('championships')
+      .where('published', '==', true)
+      .orderBy('nr', 'desc')
+      .withConverter(modelConverter<Championship>())
+      .get();
+
+    championships = docsSnapshot.docs.map((d) => Championship.parse(d.data()));
+    await useStorage().setItem('db:championships', championships);
+  }
+
+  return championships;
 };
