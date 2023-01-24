@@ -1,4 +1,4 @@
-import type {
+import {
   DocumentData,
   FirestoreDataConverter,
   PartialWithFieldValue,

@@ -1,8 +1,4 @@
-import { config } from 'dotenv';
 import { cert, getApps, initializeApp } from 'firebase-admin/app';
-
-// Parse env
-config();
 
 const apps = getApps();
 
