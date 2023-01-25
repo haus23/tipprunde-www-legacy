@@ -5,7 +5,7 @@
     "dev:foh": "pnpm --filter foh run dev",
     "build:types": "pnpm --filter dtp-types run build",
     "build": "pnpm --filter=!api run build",
-    "format": "pnpx prettier --check **/*.{ts,tsx}"
+    "format": "prettier --ignore-path .gitignore --write **/*.{cjs,ts,tsx}"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.0",
