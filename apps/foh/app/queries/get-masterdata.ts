@@ -1,4 +1,4 @@
-import type { Championship, League, Player, Rules, Team } from 'dtp-types';
+import type { Championship, League, Player, Rules, Team } from '@haus23/dtp-types';
 
 export type RawMasterdata = {
   championships: Championship[];

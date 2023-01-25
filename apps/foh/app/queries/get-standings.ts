@@ -3,7 +3,7 @@ import type {
   ChampionshipPlayer,
   ChampionshipRound,
   ChampionshipTip,
-} from 'dtp-types';
+} from '@haus23/dtp-types';
 
 export type Standings = {
   matches: ChampionshipMatch[];

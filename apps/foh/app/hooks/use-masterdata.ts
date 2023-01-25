@@ -1,5 +1,5 @@
 import { useMatches } from '@remix-run/react';
-import type { League, Player, Rules, Team } from 'dtp-types';
+import type { League, Player, Rules, Team } from '@haus23/dtp-types';
 import type { RawMasterdata } from '~/queries/get-masterdata';
 
 export function useMasterdata() {

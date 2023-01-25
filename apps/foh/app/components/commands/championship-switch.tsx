@@ -1,6 +1,6 @@
 import { useNavigate } from '@remix-run/react';
 import { Fragment, useState } from 'react';
-import type { Championship } from 'dtp-types';
+import type { Championship } from '@haus23/dtp-types';
 
 import { CheckIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { Combobox, Dialog, Transition } from '@headlessui/react';
