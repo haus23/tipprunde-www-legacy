@@ -24,4 +24,4 @@ RUN pnpm prune --prod
 FROM build
 
 EXPOSE 5432
-CMD ["pnpm", "start:api"]
+CMD ["node", "./apps/api/.output/server/index.mjs"]
