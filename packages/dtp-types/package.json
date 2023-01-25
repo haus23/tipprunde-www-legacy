@@ -1,9 +1,18 @@
 {
-  "name": "dtp-types",
+  "name": "@haus23/dtp-types",
+  "description": "Doing-The-Pools - Core library types",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/haus23/tipprunde",
+    "directory": "packages/dtp-types"
+  },
+  "license": "MIT",
+  "homepage": "https://www.runde.tips",
   "type": "module",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     }
