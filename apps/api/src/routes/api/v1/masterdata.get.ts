@@ -4,7 +4,7 @@ import { getPlayers } from '~/queries/get-players';
 import { getRules } from '~/queries/get-rules';
 import { getTeams } from '~/queries/get-teams';
 
-export default defineEventHandler(async () => {
+export default eventHandler(async () => {
   const championships = await getChampionships();
   const leagues = await getLeagues();
   const players = await getPlayers();

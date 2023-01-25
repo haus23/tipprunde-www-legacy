@@ -3,24 +3,34 @@ import { ChampionshipId } from 'dtp-types';
 import { getStandings } from '~/queries/championship/get-standings';
 import { getChampionships } from '~/queries/get-championships';
 
-export default defineEventHandler(async (event) => {
+export default eventHandler(async (event) => {
   const championshipIdParseResult = ChampionshipId.or(z.literal('current')).safeParse(
     event.context.params.championshipId
   );
 
   if (!championshipIdParseResult.success) {
-    return createError({
+    throw createError({
       statusCode: 406,
       statusText: 'Not accetable',
       statusMessage: 'Invalid championship',
-      stack: undefined,
     });
   } else {
-    let championshipId = championshipIdParseResult.data;
+    const championships = await getChampionships();
 
-    if (championshipId === 'current') {
-      const championships = await getChampionships();
-      championshipId = championships[0].id;
+    let championshipId: string | undefined;
+    if (championshipIdParseResult.data === 'current') {
+      championshipId = championships?.at(0)?.id;
+    } else {
+      const championship = championships?.find((c) => c.id === championshipIdParseResult.data);
+      championshipId = championship?.id;
+    }
+
+    if (!championshipId) {
+      throw createError({
+        statusCode: 404,
+        statusText: 'Not found',
+        statusMessage: 'No such championship',
+      });
     }
 
     return await getStandings(championshipId);

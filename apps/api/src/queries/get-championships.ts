@@ -1,12 +1,11 @@
 import { Championship } from 'dtp-types';
 import { logger } from '~/logger';
+import { cachedQuery } from '~/utils/cached-query';
 import { db } from '../server/db';
 import { modelConverter } from '../server/model-converter';
 
-export const getChampionships = async (): Promise<Championship[]> => {
-  let championships = await useStorage().getItem('db:championships');
-
-  if (!championships) {
+export const getChampionships = cachedQuery(
+  async (): Promise<Championship[]> => {
     logger.info('Query championships');
 
     const docsSnapshot = await db
@@ -16,9 +15,10 @@ export const getChampionships = async (): Promise<Championship[]> => {
       .withConverter(modelConverter<Championship>())
       .get();
 
-    championships = docsSnapshot.docs.map((d) => Championship.parse(d.data()));
-    await useStorage().setItem('db:championships', championships);
+    return docsSnapshot.docs.map((d) => Championship.parse(d.data()));
+  },
+  {
+    name: 'masterdata',
+    getKey: () => 'championships',
   }
-
-  return championships;
-};
+);

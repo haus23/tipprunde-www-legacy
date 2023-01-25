@@ -7,11 +7,10 @@ import {
 import { logger } from '~/logger';
 import { db } from '~/server/db';
 import { modelConverter } from '~/server/model-converter';
+import { cachedQuery } from '~/utils/cached-query';
 
-export const getStandings = async (championshipId: string) => {
-  let standings = await useStorage().getItem(`db:standings:${championshipId}`);
-
-  if (!standings) {
+export const getStandings = cachedQuery(
+  async (championshipId: string) => {
     logger.info(`Query championships ${championshipId}`);
 
     const matchesDocsSnapshot = await db
@@ -38,12 +37,12 @@ export const getStandings = async (championshipId: string) => {
       .get();
     const tips = tipsDocsSnapshot.docs.map((d) => ChampionshipTip.parse(d.data()));
 
-    standings = { matches, players, rounds, tips };
-
-    await useStorage().setItem(`db:standings:${championshipId}`, standings);
-
     logger.info(`Query championships ${championshipId} finished`);
-  }
 
-  return standings;
-};
+    return { matches, players, rounds, tips };
+  },
+  {
+    name: 'standings',
+    getKey: (championshipId: string) => championshipId,
+  }
+);
