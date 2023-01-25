@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "nitropack dev",
     "build": "nitropack build",
-    "postinstall": "nitropack prepare"
+    "postinstall": "nitropack prepare",
+    "start": "node .output/server/index.mjs"
   },
   "dependencies": {
     "dtp-types": "workspace:*",
