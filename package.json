@@ -7,6 +7,10 @@
     "start:api": "pnpm --filter api run start",
     "dev:foh": "pnpm --filter foh run dev",
     "build:types": "pnpm --filter dtp-types run build",
-    "build": "pnpm --filter=!api run build"
+    "build": "pnpm --filter=!api run build",
+    "format": "pnpx prettier --check **/*.{ts,tsx}"
+  },
+  "devDependencies": {
+    "prettier": "^2.8.3"
   }
 }
