@@ -41,12 +41,12 @@ importers:
       '@remix-run/react': ^1.11.1
       '@remix-run/serve': ^1.11.1
       '@remix-run/vercel': ^1.11.1
-      '@types/react': ^18.0.25
-      '@types/react-dom': ^18.0.8
-      '@vercel/node': ^2.6.2
+      '@types/react': ^18.0.27
+      '@types/react-dom': ^18.0.10
+      '@vercel/node': ^2.8.15
       concurrently: ^7.6.0
       dtp-types: workspace:*
-      eslint: ^8.27.0
+      eslint: ^8.32.0
       radix-colors-plugin: workspace:*
       react: ^18.2.0
       react-dom: ^18.2.0
