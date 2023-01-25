@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { unstable_sendNoContent } from '~/utils/unstable-send-no-content';
 
 const BodySchema = z.object({ key: z.string().regex(/^\w+(\:\w+)+/) }).strict();
 
@@ -15,9 +16,6 @@ export default defineEventHandler(async (event) => {
   } else {
     await useStorage().removeItem(`db:cache:${parsed.data.key}.json`);
 
-    // TODO: simplify with sendNoContent
-    event.node.res.statusCode = 204;
-    event.node.res.removeHeader('content-length');
-    event.node.res.end();
+    unstable_sendNoContent(event);
   }
 });
