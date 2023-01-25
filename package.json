@@ -2,9 +2,8 @@
   "name": "tipprunde",
   "license": "MIT",
   "scripts": {
-    "dev:foh": "pnpm --filter foh run dev",
-    "build:types": "pnpm --filter dtp-types run build",
-    "build": "pnpm --filter=!api run build",
+    "dev": "pnpm -r run dev",
+    "build": "pnpm -r run build",
     "format": "prettier --ignore-path .gitignore --write **/*.{cjs,ts,tsx}"
   },
   "devDependencies": {

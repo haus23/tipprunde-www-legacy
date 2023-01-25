@@ -23,7 +23,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "unbuild"
+    "build": "unbuild",
+    "dev": "unbuild --stub"
   },
   "dependencies": {
     "zod": "^3.20.2"
