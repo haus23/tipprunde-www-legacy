@@ -15,16 +15,17 @@ const navItems = [
 export function AppHeader() {
   const { championship } = useMasterdata();
   return (
-    <header className="flex items-center justify-between px-2 sm:px-4 bg-radix-mauve2 border-b border-radix-mauve6 shadow">
+    <header className="flex items-center justify-between px-4 bg-radix-mauve2 border-b border-radix-mauve6 shadow">
       <div className="flex items-center gap-x-2">
-        <Link to="/" className="group flex items-center gap-x-2 py-3 focus:outline-none ">
+        <MobileNav className="sm:hidden py-3" navItems={navItems} />
+        <Link to="/" className="hidden sm:flex group items-center gap-x-2 py-3 focus:outline-none ">
           <div className="flex items-center rounded-lg p-1 group-focus:ring-4 group-focus:ring-radix-mauve7">
             <Logo className="h-8 sm:h-10" />
-            <h1 className="hidden sm:block p-2 text-xl font-semibold">runde.tips</h1>
+            <h1 className="p-2 text-xl font-semibold">runde.tips</h1>
           </div>
         </Link>
         <div className="sm:hidden">
-          <span className="text-lg font-semibold">{championship.name.replace('runde', 'rd.')}</span>
+          <span className="text-xl font-semibold">{championship.name}</span>
         </div>
         <nav className="hidden sm:flex self-stretch items-stretch gap-x-2">
           {navItems.map((item) => (
@@ -51,7 +52,6 @@ export function AppHeader() {
       <div className="flex items-center gap-x-2">
         <ChampionshipSwitch />
         <ThemeSwitch />
-        <MobileNav className="sm:hidden" navItems={navItems} />
       </div>
     </header>
   );

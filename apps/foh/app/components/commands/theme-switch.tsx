@@ -44,7 +44,7 @@ export function ThemeSwitch() {
 
   return (
     <DropDownMenu.Root>
-      <DropDownMenu.Trigger className="p-1 sm:p-2 mr-1 rounded-lg violet-cta-int focus:outline-none focus:ring-4 focus:ring-radix-violet7">
+      <DropDownMenu.Trigger className="p-1 sm:p-2 rounded-lg violet-cta-int focus:outline-none focus:ring-4 focus:ring-radix-violet7">
         <MoonIcon className="h-6 w-6 hidden dark:block" />
         <SunIcon className="h-6 w-6 block dark:hidden" />
       </DropDownMenu.Trigger>

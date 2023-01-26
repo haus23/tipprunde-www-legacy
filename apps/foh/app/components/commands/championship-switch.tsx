@@ -37,7 +37,7 @@ export function ChampionshipSwitch() {
       <div className="flex items-center">
         <button
           onClick={() => setOpen(true)}
-          className="flex items-center gap-x-2 p-1 sm:p-2 mr-1 rounded-lg violet-cta-int focus:outline-none focus:ring-4 focus:ring-radix-violet7"
+          className="flex items-center gap-x-2 p-1 sm:p-2 rounded-lg violet-cta-int focus:outline-none focus:ring-4 focus:ring-radix-violet7"
         >
           <MagnifyingGlassIcon className="h-6 w-6" />
           <span className="hidden sm:block">Turnier</span>
