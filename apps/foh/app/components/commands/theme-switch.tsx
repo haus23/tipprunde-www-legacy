@@ -1,6 +1,6 @@
-import { Menu } from '@headlessui/react';
-import { CheckIcon, ComputerDesktopIcon, MoonIcon, SunIcon } from '@heroicons/react/24/outline';
 import { useCallback, useEffect, useState } from 'react';
+import * as DropDownMenu from '@radix-ui/react-dropdown-menu';
+import { CheckIcon, ComputerDesktopIcon, MoonIcon, SunIcon } from '@heroicons/react/24/outline';
 import { cn } from '~/utils/cn';
 
 const themes = [
@@ -43,36 +43,40 @@ export function ThemeSwitch() {
   }, [updateTheme]);
 
   return (
-    <Menu as="div" className="relative flex items-center">
-      <Menu.Button className="p-1 sm:p-2 mr-1 rounded-lg violet-cta-int focus:outline-none focus:ring-4 focus:ring-radix-violet7">
+    <DropDownMenu.Root>
+      <DropDownMenu.Trigger className="p-1 sm:p-2 mr-1 rounded-lg violet-cta-int focus:outline-none focus:ring-4 focus:ring-radix-violet7">
         <MoonIcon className="h-6 w-6 hidden dark:block" />
         <SunIcon className="h-6 w-6 block dark:hidden" />
-      </Menu.Button>
-      <Menu.Items className="absolute top-16 flex flex-col right-0 py-1 w-44 origin-top-right text-radix-mauve11 bg-radix-mauve2 rounded-md shadow-lg ring-1 ring-radix-mauve6 ring-opacity-5 focus:outline-none">
-        {themes.map((t) => (
-          <Menu.Item key={t.label}>
-            {({ active }) => {
-              const Icon = t.icon;
-              const isCurrent = t.name === theme;
-              return (
-                <button
-                  onClick={() => updateTheme(t.name)}
-                  className={cn(
-                    'flex gap-x-2 pl-4 pr-2 py-2 font-semibold',
-                    active
-                      ? 'bg-radix-violet4 text-radix-violet12'
-                      : isCurrent && 'text-radix-violet11'
-                  )}
-                >
-                  <Icon className={cn('h-6 w-6')} />
-                  <span>{t.label}</span>
-                  {isCurrent && <CheckIcon className="ml-auto h-6 w-6" />}
-                </button>
-              );
-            }}
-          </Menu.Item>
-        ))}
-      </Menu.Items>
-    </Menu>
+      </DropDownMenu.Trigger>
+      <DropDownMenu.Portal>
+        <DropDownMenu.Content
+          side="top"
+          sideOffset={4}
+          align="end"
+          className="z-20 w-44 flex flex-col text-radix-mauve11 bg-radix-mauve2 rounded-md shadow-lg ring-1 ring-radix-mauve6 ring-opacity-5 focus:outline-none"
+        >
+          <DropDownMenu.Arrow className="fill-radix-mauve6 h-2 w-4"></DropDownMenu.Arrow>
+          {themes.map((t) => {
+            const Icon = t.icon;
+            const isCurrent = t.name === theme;
+            return (
+              <DropDownMenu.Item
+                key={t.label}
+                onSelect={() => updateTheme(t.name)}
+                className={cn(
+                  'flex gap-x-2 pl-4 pr-2 py-2 font-semibold cursor-pointer',
+                  'focus:outline-none focus:bg-radix-violet4 focus:text-radix-violet12',
+                  isCurrent && 'text-radix-violet11'
+                )}
+              >
+                <Icon className={cn('h-6 w-6')} />
+                <span>{t.label}</span>
+                {isCurrent && <CheckIcon className="ml-auto h-6 w-6" />}
+              </DropDownMenu.Item>
+            );
+          })}
+        </DropDownMenu.Content>
+      </DropDownMenu.Portal>
+    </DropDownMenu.Root>
   );
 }
