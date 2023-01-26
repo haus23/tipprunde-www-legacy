@@ -38,9 +38,9 @@ export function MobileNav({ className, navItems }: MobileNavProps) {
             </Dialog.Overlay>
             <Dialog.Content asChild>
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0 }}
                 className="fixed top-4 inset-x-4 divide-y divide-radix-mauve6 overflow-y-auto rounded-xl shadow-2xl ring-1 ring-radix-mauve6 ring-opacity-5 bg-radix-mauve2"
               >
                 <Dialog.Title className="sr-only">Hauptmenü</Dialog.Title>
