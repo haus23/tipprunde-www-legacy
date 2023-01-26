@@ -1,4 +1,5 @@
 import { Link, NavLink } from '@remix-run/react';
+import { useMasterdata } from '~/hooks/use-masterdata';
 import { cn } from '~/utils/cn';
 import { Logo } from '../brand/logo';
 import { ChampionshipSwitch } from '../commands/championship-switch';
@@ -12,15 +13,19 @@ const navItems = [
 ];
 
 export function AppHeader() {
+  const { championship } = useMasterdata();
   return (
     <header className="flex items-center justify-between px-2 sm:px-4 bg-radix-mauve2 border-b border-radix-mauve6 shadow">
-      <div className="flex items-center gap-x-8">
-        <Link to="/" className="group flex items-center gap-x-2 py-4 focus:outline-none">
-          <Logo className="h-8 sm:h-10" />
-          <h1 className="p-1 sm:p-2 rounded-lg text-xl font-semibold group-focus:ring-4 group-focus:ring-radix-mauve7">
-            runde.tips
-          </h1>
+      <div className="flex items-center gap-x-2">
+        <Link to="/" className="group flex items-center gap-x-2 py-3 focus:outline-none ">
+          <div className="flex items-center rounded-lg p-1 group-focus:ring-4 group-focus:ring-radix-mauve7">
+            <Logo className="h-8 sm:h-10" />
+            <h1 className="hidden sm:block p-2 text-xl font-semibold">runde.tips</h1>
+          </div>
         </Link>
+        <div className="sm:hidden">
+          <span className="text-lg font-semibold">{championship.name.replace('runde', 'rd.')}</span>
+        </div>
         <nav className="hidden sm:flex self-stretch items-stretch gap-x-2">
           {navItems.map((item) => (
             <NavLink
