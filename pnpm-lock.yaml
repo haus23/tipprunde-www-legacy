@@ -13,8 +13,8 @@ importers:
   apps/foh:
     specifiers:
       '@haus23/dtp-types': workspace:*
-      '@headlessui/react': ^1.7.7
-      '@heroicons/react': ^2.0.13
+      '@headlessui/react': ^1.7.8
+      '@heroicons/react': ^2.0.14
       '@radix-ui/react-accordion': ^1.1.0
       '@radix-ui/react-dialog': ^1.0.2
       '@radix-ui/react-dropdown-menu': ^2.0.2
@@ -27,10 +27,10 @@ importers:
       '@remix-run/vercel': ^1.11.1
       '@types/react': ^18.0.27
       '@types/react-dom': ^18.0.10
-      '@vercel/node': ^2.8.15
+      '@vercel/node': ^2.8.16
       concurrently: ^7.6.0
       eslint: ^8.32.0
-      framer-motion: ^8.5.3
+      framer-motion: ^8.5.4
       radix-colors-plugin: workspace:*
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -38,17 +38,17 @@ importers:
       typescript: ~4.9.4
     dependencies:
       '@haus23/dtp-types': link:../../packages/dtp-types
-      '@headlessui/react': 1.7.7_biqbaboplfbrettd7655fr4n2y
-      '@heroicons/react': 2.0.13_react@18.2.0
+      '@headlessui/react': 1.7.8_biqbaboplfbrettd7655fr4n2y
+      '@heroicons/react': 2.0.14_react@18.2.0
       '@radix-ui/react-accordion': 1.1.0_biqbaboplfbrettd7655fr4n2y
       '@radix-ui/react-dialog': 1.0.2_5ndqzdd6t4rivxsukjv3i3ak2q
       '@radix-ui/react-dropdown-menu': 2.0.2_5ndqzdd6t4rivxsukjv3i3ak2q
       '@radix-ui/react-select': 1.2.0_5ndqzdd6t4rivxsukjv3i3ak2q
       '@remix-run/node': 1.11.1_biqbaboplfbrettd7655fr4n2y
       '@remix-run/react': 1.11.1_biqbaboplfbrettd7655fr4n2y
-      '@remix-run/vercel': 1.11.1_ivg4iubcgjfcvyvmo3o4qzd3pe
-      '@vercel/node': 2.8.15
-      framer-motion: 8.5.3_biqbaboplfbrettd7655fr4n2y
+      '@remix-run/vercel': 1.11.1_27jq2fddagwv2effg6enukmroy
+      '@vercel/node': 2.8.16
+      framer-motion: 8.5.4_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     devDependencies:
@@ -2080,8 +2080,8 @@ packages:
     resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
     dev: true
 
-  /@headlessui/react/1.7.7_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-BqDOd/tB9u2tA0T3Z0fn18ktw+KbVwMnkxxsGPIH2hzssrQhKB5n/6StZOyvLYP/FsYtvuXfi9I0YowKPv2c1w==}
+  /@headlessui/react/1.7.8_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-zcwb0kd7L05hxmoAMIioEaOn235Dg0fUO+iGbLPgLVSjzl/l39V6DTpC2Df49PE5aG5/f5q0PZ9ZHZ78ENNV+A==}
     engines: {node: '>=10'}
     peerDependencies:
       react: ^16 || ^17 || ^18
@@ -2092,8 +2092,8 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /@heroicons/react/2.0.13_react@18.2.0:
-    resolution: {integrity: sha512-iSN5XwmagrnirWlYEWNPdCDj9aRYVD/lnK3JlsC9/+fqGF80k8C7rl+1HCvBX0dBoagKqOFBs6fMhJJ1hOg1EQ==}
+  /@heroicons/react/2.0.14_react@18.2.0:
+    resolution: {integrity: sha512-eFL4if6L7woL1fUvk/jjXx4z9NxVESHHrQnEd2qKVelTFTIr/3VLGWdPb0biia9ZVe26P0JSs/xmOlRNur3SrQ==}
     peerDependencies:
       react: '>= 16'
     dependencies:
@@ -2921,14 +2921,14 @@ packages:
       set-cookie-parser: 2.5.1
       source-map: 0.7.4
 
-  /@remix-run/vercel/1.11.1_ivg4iubcgjfcvyvmo3o4qzd3pe:
+  /@remix-run/vercel/1.11.1_27jq2fddagwv2effg6enukmroy:
     resolution: {integrity: sha512-eh7LDHcPGEDZ6lv1ES+dMz7Xdz0RnG3sYBxhhF+fSL/u6A5wUpHJeTmAGMTzKyrVliX31qV62ehb2KR0Zpn+mg==}
     engines: {node: '>=14'}
     peerDependencies:
       '@vercel/node': ^1.8.3 || ^2.4.0
     dependencies:
       '@remix-run/node': 1.11.1_biqbaboplfbrettd7655fr4n2y
-      '@vercel/node': 2.8.15
+      '@vercel/node': 2.8.16
     transitivePeerDependencies:
       - react
       - react-dom
@@ -3459,20 +3459,20 @@ packages:
     resolution: {integrity: sha512-17kVyLq3ePTKOkveHxXuIJZtGYs+cSoev7BlP+Lf4916qfDhk/HBjvlYDe8egrea7LNPHKwSZJK/bzZC+Q6AwQ==}
     dev: true
 
-  /@vercel/build-utils/5.9.0:
-    resolution: {integrity: sha512-LJRhd/ritLGHH+YvZ+DC7AW3Jr87UZHFHz2h2ENULDZ8qAo5LJH+y+Cg11uxfXkhQKK2f/AZQJXyKVyu1BBwdQ==}
+  /@vercel/build-utils/6.0.0:
+    resolution: {integrity: sha512-2AoVcDUyQCj516KrRNH92NeKI+KZGnVGjHkcb+VcXxGspYpKL/gC+AdFtC05qbgxX1e8U95Yd8ROucTftHErWw==}
     dev: false
 
   /@vercel/node-bridge/3.1.10:
     resolution: {integrity: sha512-0DQzF5pdyP+xd5f1Ss2fAO+9xIvzUhngRAPazwg4XHZE9iLkv2L+A1u3L8NYi4hoUlAAZQ5GF3txlm/oBn4tNw==}
     dev: false
 
-  /@vercel/node/2.8.15:
-    resolution: {integrity: sha512-pS445kGQGi4xN2vd/95mp5E86WrVEV7VH/u7f2G0Q5jCbcw590czJv1U+FLlW5OrznuuGT0LbNRKA0TBAUrbfA==}
+  /@vercel/node/2.8.16:
+    resolution: {integrity: sha512-aLuPHOm29cYjCK649/5j/zbYFXxRtNYcnNFdBd2gVg2II54SfByYIx/Tw3A6PeQmR23piBwPZMI5uEuYC0TGmA==}
     dependencies:
       '@edge-runtime/vm': 2.0.0
       '@types/node': 14.18.33
-      '@vercel/build-utils': 5.9.0
+      '@vercel/build-utils': 6.0.0
       '@vercel/node-bridge': 3.1.10
       '@vercel/static-config': 2.0.11
       edge-runtime: 2.0.0
@@ -5926,8 +5926,8 @@ packages:
       map-cache: 0.2.2
     dev: true
 
-  /framer-motion/8.5.3_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-CkQHhGlldJptI0SGjmjUzseXCzi0lljDkToE7cANHRCs12F5I84ymdWvCi6HfIKkt6Ykq2RiDd3dGuYV0oMn2w==}
+  /framer-motion/8.5.4_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-xBVovXUIdpKvRvIPsrSTiyXZUYyct9zarzdVeyzv+V6DFsDpHIuppyOjDO8VM1fBspDn+rUU4ZFZ5yJxLmzebQ==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
