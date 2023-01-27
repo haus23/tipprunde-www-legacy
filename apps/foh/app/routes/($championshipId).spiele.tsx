@@ -1,4 +1,4 @@
-import { ChampionshipTip } from '@haus23/dtp-types';
+import type { ChampionshipTip } from '@haus23/dtp-types';
 import {
   ArrowDownIcon,
   ArrowUpIcon,
