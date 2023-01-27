@@ -6,7 +6,9 @@ import {
   ChevronDownIcon,
   ChevronUpDownIcon,
   ChevronUpIcon,
+  InformationCircleIcon,
 } from '@heroicons/react/24/outline';
+import * as HoverCard from '@radix-ui/react-hover-card';
 import * as Select from '@radix-ui/react-select';
 import { Fragment, useEffect, useReducer, useState } from 'react';
 
@@ -35,7 +37,7 @@ function sortReducer(state: SortSpec, column: SortColumn): SortSpec {
   }
 }
 function sortTips(tips: TipRow[], { column, order }: SortSpec) {
-  // No sort column or order is 0 -> no sorting
+  // No sort column or order is 1 -> no sorting
   if (!column || order === 1) return tips;
 
   const missingTips = tips.filter((t) => !t.tip);
@@ -67,6 +69,15 @@ function sortTips(tips: TipRow[], { column, order }: SortSpec) {
 export default function Spiele() {
   const { championship, teams, players: allPlayers } = useMasterdata();
   const { rounds, matches, players, tips } = useStandings();
+
+  const [openCards, setOpenCards] = useState(Array<boolean>(players.length));
+  function setCardOpen(ix: number, open: boolean) {
+    setOpenCards((state) => {
+      const newState = [...state];
+      newState[ix] = open;
+      return newState;
+    });
+  }
 
   const [selectedMatchId, setSelectedMatchId] = useState(matches[0].id);
 
@@ -193,11 +204,37 @@ export default function Spiele() {
           </tr>
         </thead>
         <tbody className="divide-y divide-radix-mauve6 font-semibold">
-          {sortTips(playerTips, sorting).map((t) => (
+          {sortTips(playerTips, sorting).map((t, ix) => (
             <tr className={cn(t.info && 'violet-cta')} key={t.id}>
               <td className="w-full py-3 px-4 md:px-6">{t.name}</td>
               <td className="text-center px-4 md:px-6">{t.tip}</td>
-              <td className="text-center px-4 md:px-6">{t.points}</td>
+              <td className="text-center px-4 md:px-6">
+                <div className="relative">
+                  <span className="pr-4">{t.points}</span>
+                  {t.info && (
+                    <HoverCard.Root
+                      open={openCards[ix]}
+                      onOpenChange={(open) => setCardOpen(ix, open)}
+                      openDelay={300}
+                    >
+                      <HoverCard.Trigger onClick={() => setCardOpen(ix, true)} asChild>
+                        <InformationCircleIcon className="absolute right-0 top-[1px] h-5 w-5" />
+                      </HoverCard.Trigger>
+                      <HoverCard.Portal>
+                        <HoverCard.Content
+                          sideOffset={2}
+                          align="end"
+                          className="px-4 py-2 text-radix-violet12 bg-radix-mauve2 rounded-md shadow-lg ring-1 ring-radix-mauve6 ring-opacity-5 focus:outline-none"
+                        >
+                          <HoverCard.Arrow className="fill-radix-mauve2" />
+                          {t.joker === true && <p>Joker</p>}
+                          {t.lonelyHit === true && <p>Einziger richtiger Tipp</p>}
+                        </HoverCard.Content>
+                      </HoverCard.Portal>
+                    </HoverCard.Root>
+                  )}
+                </div>
+              </td>
             </tr>
           ))}
         </tbody>
