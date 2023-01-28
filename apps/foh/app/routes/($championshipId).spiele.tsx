@@ -87,8 +87,11 @@ export default function Spiele() {
   } as SortSpec);
 
   useEffect(() => {
-    setSelectedMatchId(matches[0].id);
-  }, [matches]);
+    const matchId = championship.completed
+      ? matches[0].id
+      : [...matches].reverse().find((m) => m.result)?.id || matches[0].id;
+    setSelectedMatchId(matchId);
+  }, [championship, matches]);
 
   // Tooltips
   const [openTips, setOpenTips] = useState(Array<boolean>(players.length));
