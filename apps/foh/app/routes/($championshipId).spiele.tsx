@@ -239,7 +239,7 @@ export default function Spiele() {
                 <td className="text-center px-4 md:px-6">{t.tip}</td>
                 <td className="text-center px-4 md:px-6">
                   <div className="relative">
-                    <span className="pr-4">{t.points}</span>
+                    <span className="pr-4">{selectedMatch?.result && t.points}</span>
                     {t.info && (
                       <Tooltip.Root
                         open={openTips[ix]}
