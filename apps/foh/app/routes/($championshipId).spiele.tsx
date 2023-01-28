@@ -15,6 +15,7 @@ import { useEffect, useReducer, useState } from 'react';
 import { useMasterdata } from '~/hooks/use-masterdata';
 import { useStandings } from '~/hooks/use-standings';
 import { cn } from '~/utils/cn';
+import { formatDate } from '~/utils/format-date';
 
 export const handle = { view: 'spiele' };
 
@@ -165,7 +166,7 @@ export default function Spiele() {
           <div className="w-full flex justify-between">
             <div className="space-y-1">
               <p className="text-xs font-medium uppercase">Wann</p>
-              <p className="text-radix-violet12 font-semibold">{selectedMatch.date}</p>
+              <p className="text-radix-violet12 font-semibold">{formatDate(selectedMatch.date)}</p>
             </div>
             <div className="space-y-1">
               <p className="text-xs font-medium uppercase">Wo</p>
