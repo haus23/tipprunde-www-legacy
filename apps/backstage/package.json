@@ -1,3 +1,12 @@
 {
-  "name": "backstage"
+  "name": "backstage",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev --port 3001"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "~4.9.4",
+    "vite": "^4.0.4"
+  }
 }
