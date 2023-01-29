@@ -1,3 +1,5 @@
+import { useEffect, useReducer, useState } from 'react';
+import { motion } from 'framer-motion';
 import type { ChampionshipTip } from '@haus23/dtp-types';
 import {
   ArrowDownIcon,
@@ -10,7 +12,6 @@ import {
 } from '@heroicons/react/24/outline';
 import * as Select from '@radix-ui/react-select';
 import * as Tooltip from '@radix-ui/react-tooltip';
-import { useEffect, useReducer, useState } from 'react';
 
 import { useMasterdata } from '~/hooks/use-masterdata';
 import { useStandings } from '~/hooks/use-standings';
@@ -250,17 +251,24 @@ export default function Spiele() {
                         onOpenChange={(open) => setTipOpen(ix, open)}
                       >
                         <Tooltip.Trigger onClick={() => setTipOpen(ix, true)} asChild>
-                          <InformationCircleIcon className="absolute right-0 top-[1px] h-5 w-5" />
+                          <InformationCircleIcon className="absolute right-0 top-0 h-5 w-5" />
                         </Tooltip.Trigger>
                         <Tooltip.Portal>
                           <Tooltip.Content
+                            asChild
                             sideOffset={2}
                             align="end"
                             className="px-4 py-2 text-radix-violet12 bg-radix-mauve2 rounded-md shadow-lg ring-1 ring-radix-mauve6 ring-opacity-5 focus:outline-none"
                           >
-                            <Tooltip.Arrow className="fill-radix-mauve2" />
-                            {t.joker === true && <p>Joker</p>}
-                            {t.lonelyHit === true && <p>Einziger richtiger Tipp</p>}
+                            <motion.div
+                              transition={{ duration: 0.1 }}
+                              initial={{ opacity: 0, y: 5, scaleX: 0.5 }}
+                              animate={{ opacity: 1, y: 0, scaleX: 1 }}
+                            >
+                              <Tooltip.Arrow className="fill-radix-mauve2" />
+                              {t.joker === true && <p>Joker</p>}
+                              {t.lonelyHit === true && <p>Einziger richtiger Tipp</p>}
+                            </motion.div>
                           </Tooltip.Content>
                         </Tooltip.Portal>
                       </Tooltip.Root>
