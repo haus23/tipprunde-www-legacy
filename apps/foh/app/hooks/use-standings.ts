@@ -1,10 +1,9 @@
-import { useRouteLoaderData } from '@remix-run/react';
 import { useMemo } from 'react';
+import { useAsyncValue } from '@remix-run/react';
 import type { Standings } from '~/queries/get-standings';
 
 export function useStandings() {
-  const data = useRouteLoaderData('routes/($championshipId)') as Standings;
-
+  const data = useAsyncValue() as Standings;
   return useMemo(
     () => ({
       matches: [...data.matches].sort((a, b) => a.nr - b.nr),
