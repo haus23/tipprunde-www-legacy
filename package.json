@@ -2,12 +2,13 @@
   "name": "tipprunde",
   "license": "MIT",
   "scripts": {
-    "dev": "pnpm -r run dev",
+    "dev": "turbo run dev",
     "build": "pnpm -r run build",
     "format": "prettier --ignore-path .gitignore --write **/*.{cjs,ts,tsx}"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.0",
-    "prettier": "^2.8.3"
+    "prettier": "^2.8.3",
+    "turbo": "^1.7.0"
   }
 }
