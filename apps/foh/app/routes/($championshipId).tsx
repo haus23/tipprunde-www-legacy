@@ -1,11 +1,27 @@
+import type {
+  ChampionshipMatch,
+  ChampionshipPlayer,
+  ChampionshipRound,
+  ChampionshipTip,
+} from '@haus23/dtp-types';
 import { defer, type LoaderArgs } from '@remix-run/node';
 import { Await, Outlet, useLoaderData, type ShouldRevalidateFunction } from '@remix-run/react';
 import { Suspense } from 'react';
 
 import { AppHeader } from '~/components/layout/app-header';
 import { AppLoading } from '~/components/layout/app-loading';
-import { getStandings } from '~/queries/get-standings';
 
+export type Standings = {
+  matches: ChampionshipMatch[];
+  players: ChampionshipPlayer[];
+  rounds: ChampionshipRound[];
+  tips: ChampionshipTip[];
+};
+
+async function getStandings(championshipId: string): Promise<Standings> {
+  const response = await fetch(`${process.env.API_URL}/standings/${championshipId}`);
+  return await response.json();
+}
 export async function loader({ params }: LoaderArgs) {
   const championshipId = params.championshipId || 'current';
   const standings = getStandings(championshipId);
