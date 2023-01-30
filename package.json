@@ -2,7 +2,7 @@
   "name": "tipprunde",
   "license": "MIT",
   "scripts": {
-    "dev": "turbo run dev",
+    "dev": "turbo run dev --no-daemon",
     "build": "pnpm -r run build",
     "format": "prettier --ignore-path .gitignore --write **/*.{cjs,ts,tsx}"
   },
