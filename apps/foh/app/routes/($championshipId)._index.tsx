@@ -1,10 +1,12 @@
+import { useChampionship } from '~/hooks/use-championship';
 import { useMasterdata } from '~/hooks/use-masterdata';
 import { useStandings } from '~/hooks/use-standings';
 
 export const handle = { view: '' };
 
 export default function Tabelle() {
-  const { championship, players } = useMasterdata();
+  const championship = useChampionship();
+  const { players } = useMasterdata();
   const { players: ranks } = useStandings();
 
   return (

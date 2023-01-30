@@ -7,9 +7,11 @@ import { Combobox, Dialog, Transition } from '@headlessui/react';
 import { cn } from '~/utils/cn';
 import { useMasterdata } from '~/hooks/use-masterdata';
 import { useView } from '~/hooks/use-view';
+import { useChampionship } from '~/hooks/use-championship';
 
 export function ChampionshipSwitch() {
-  const { championship, championships } = useMasterdata();
+  const { championships } = useMasterdata();
+  const championship = useChampionship();
   const view = useView();
 
   const navigate = useNavigate();

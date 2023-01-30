@@ -1,5 +1,5 @@
 import { Link, NavLink } from '@remix-run/react';
-import { useMasterdata } from '~/hooks/use-masterdata';
+import { useChampionship } from '~/hooks/use-championship';
 import { cn } from '~/utils/cn';
 import { Logo } from '../brand/logo';
 import { ChampionshipSwitch } from '../commands/championship-switch';
@@ -13,7 +13,7 @@ const navItems = [
 ];
 
 export function AppHeader() {
-  const { championship } = useMasterdata();
+  const championship = useChampionship();
   return (
     <header className="flex items-center justify-between px-4 bg-radix-mauve2 border-b border-radix-mauve6 shadow">
       <div className="flex items-center gap-x-2">

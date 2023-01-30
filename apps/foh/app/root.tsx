@@ -26,22 +26,15 @@ export async function loader({ params }: LoaderArgs) {
   const response = await fetch(`${process.env.API_URL}/masterdata`);
   const { championships, leagues, players, teams, rules } = (await response.json()) as MasterData;
 
-  let championship: Championship | undefined;
-
-  if (!params.championshipId) {
-    championship = championships[0];
-  } else {
-    championship = championships.find((c) => c.id === params.championshipId);
-  }
-
-  if (!championship) {
-    throw new Response('Not Found', {
-      status: 404,
-    });
+  if (params.championshipId) {
+    if (!championships.find((c) => c.id === params.championshipId)) {
+      throw new Response('Not Found', {
+        status: 404,
+      });
+    }
   }
 
   return {
-    championship,
     championships,
     leagues,
     players,

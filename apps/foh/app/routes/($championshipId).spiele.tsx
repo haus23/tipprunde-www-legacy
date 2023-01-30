@@ -17,6 +17,7 @@ import { useMasterdata } from '~/hooks/use-masterdata';
 import { useStandings } from '~/hooks/use-standings';
 import { cn } from '~/utils/cn';
 import { formatDate } from '~/utils/format-date';
+import { useChampionship } from '~/hooks/use-championship';
 
 export const handle = { view: 'spiele' };
 
@@ -68,7 +69,8 @@ function sortTips(tips: TipRow[], { column, order }: SortSpec) {
 }
 
 export default function Spiele() {
-  const { championship, leagues, teams, players: allPlayers } = useMasterdata();
+  const championship = useChampionship();
+  const { leagues, teams, players: allPlayers } = useMasterdata();
   const { rounds, matches, players, tips } = useStandings();
 
   const [selectedMatchId, setSelectedMatchId] = useState(matches[0].id);
