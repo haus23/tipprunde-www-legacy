@@ -6,9 +6,11 @@ import { CheckIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { Combobox, Dialog, Transition } from '@headlessui/react';
 import { cn } from '~/utils/cn';
 import { useMasterdata } from '~/hooks/use-masterdata';
+import { useView } from '~/hooks/use-view';
 
 export function ChampionshipSwitch() {
-  const { championship, championships, view } = useMasterdata();
+  const { championship, championships } = useMasterdata();
+  const view = useView();
 
   const navigate = useNavigate();
 

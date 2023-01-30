@@ -1,6 +1,6 @@
+import type { Championship, League, Player, Rules, Team } from '@haus23/dtp-types';
 import type { LoaderArgs, MetaFunction } from '@remix-run/node';
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
-import { getMasterdata } from './queries/get-masterdata';
 
 import styles from './styles/app.css';
 
@@ -14,8 +14,40 @@ export const meta: MetaFunction = () => ({
   viewport: 'width=device-width,initial-scale=1',
 });
 
+type MasterData = {
+  championships: Championship[];
+  leagues: Record<string, Omit<League, 'id'>>;
+  players: Record<string, Omit<Player, 'id'>>;
+  rules: Record<string, Omit<Rules, 'id'>>;
+  teams: Record<string, Omit<Team, 'id'>>;
+};
+
 export async function loader({ params }: LoaderArgs) {
-  return getMasterdata();
+  const response = await fetch(`${process.env.API_URL}/masterdata`);
+  const { championships, leagues, players, teams, rules } = (await response.json()) as MasterData;
+
+  let championship: Championship | undefined;
+
+  if (!params.championshipId) {
+    championship = championships[0];
+  } else {
+    championship = championships.find((c) => c.id === params.championshipId);
+  }
+
+  if (!championship) {
+    throw new Response('Not Found', {
+      status: 404,
+    });
+  }
+
+  return {
+    championship,
+    championships,
+    leagues,
+    players,
+    teams,
+    rules,
+  };
 }
 
 export const shouldRevalidate = () => false;
