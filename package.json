@@ -3,7 +3,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "turbo run dev --no-daemon",
-    "build": "pnpm -r run build",
+    "build": "turbo run build --no-daemon",
     "format": "prettier --ignore-path .gitignore --write **/*.{cjs,ts,tsx}"
   },
   "devDependencies": {
