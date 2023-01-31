@@ -4,5 +4,8 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
+  "tailwindCSS.experimental.configFile": {
+    "apps/www/tailwind.config.cjs": "apps/www/**"
+  },
   "references.preferredLocation": "peek"
 }
