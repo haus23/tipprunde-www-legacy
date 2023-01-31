@@ -46,3 +46,35 @@ If you want to add borders to your components, you can use the `color-border` pa
 ### `color-solid`
 
 If you want solid backgrounds to your components rather than the lighter ones provided by the other classes, then you can use `color-solid`, giving you a background of step `9`, again, there's a `color-solid-int` option that also gives you a hover state at step `10`
+
+## Additions by me
+
+You can add a semantic mapping:
+
+```js
+plugins: [
+    require("radix-colors-plugin")({
+      colors: ["blue", "cyan", "lime"],
+      mappings: { "brand": "violet", "neutral": "mauve" }
+    }),
+],
+```
+
+This will generate additional component classes `brand-bg`, `brand-bg-int`,`neutral-bg`, ... and
+the following helper classes:
+
+### `name-app-bg`
+
+Will give you background-color of mapped color of step 1
+
+### `name-app-bg-subtl`
+
+Will give you background-color of mapped color of step 2
+
+### `name-app-text`
+
+Will give you background-color of mapped color of step 11
+
+### `name-app-text-contrast`
+
+Will give you background-color of mapped color of step 12

@@ -80,6 +80,70 @@ const radixColorsPlugin = plugin.withOptions(
         },
       });
       addComponents(radixStyles);
+
+      // Add mappings
+      mappedStyles = {};
+      mappings = options.mappings ?? {};
+      for (const [name, color] of Object.entries(mappings)) {
+        const styles = {
+          ['.' + name + '-app-bg']: {
+            backgroundColor: `var(--${color}1)`,
+          },
+          ['.' + name + '-app-bg-subtl']: {
+            backgroundColor: `var(--${color}2)`,
+          },
+          ['.' + name + '-bg']: {
+            backgroundColor: `var(--${color}3)`,
+          },
+          ['.' + name + '-bg-int']: {
+            backgroundColor: `var(--${color}3)`,
+          },
+          ['.' + name + '-bg-int:hover']: {
+            backgroundColor: `var(--${color}4)`,
+          },
+          ['.' + name + '-bg-int:focus']: {
+            backgroundColor: `var(--${color}5)`,
+          },
+          ['.' + name + '-cta']: {
+            backgroundColor: `var(--${color}4)`,
+          },
+          ['.' + name + '-cta-int']: {
+            backgroundColor: `var(--${color}4)`,
+          },
+          ['.' + name + '-cta-int:hover']: {
+            backgroundColor: `var(--${color}5)`,
+          },
+          ['.' + name + '-cta-int:focus']: {
+            backgroundColor: `var(--${color}6)`,
+          },
+          ['.' + name + '-border']: {
+            borderColor: `var(--${color}6)`,
+          },
+          ['.' + name + '-border-int']: {
+            borderColor: `var(--${color}7)`,
+          },
+          ['.' + name + '-border-int:hover']: {
+            borderColor: `var(--${color}8)`,
+          },
+          ['.' + name + '-solid']: {
+            backgroundColor: `var(--${color}9)`,
+          },
+          ['.' + name + '-solid-int']: {
+            backgroundColor: `var(--${color}9)`,
+          },
+          ['.' + name + '-solid-int:hover']: {
+            backgroundColor: `var(--${color}10)`,
+          },
+          ['.' + name + '-app-text']: {
+            color: `var(--${color}11)`,
+          },
+          ['.' + name + '-app-text-contrast']: {
+            color: `var(--${color}12)`,
+          },
+        };
+        mappedStyles = { ...mappedStyles, ...styles };
+      }
+      addComponents(mappedStyles);
     };
   },
   function (options) {
