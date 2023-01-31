@@ -2,6 +2,7 @@
   "name": "tailwind-config",
   "main": "tailwind.config.cjs",
   "devDependencies": {
+    "radix-colors-plugin": "workspace:*",
     "tailwindcss": "^3.2.4"
   }
 }
