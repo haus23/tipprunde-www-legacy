@@ -2,7 +2,7 @@
   "name": "backstage",
   "type": "module",
   "scripts": {
-    "dev": "vite dev --port 3001"
+    "dev:backstage": "vite dev --port 3001"
   },
   "dependencies": {},
   "devDependencies": {
