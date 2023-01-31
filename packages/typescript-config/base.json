@@ -2,10 +2,13 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Default",
   "compilerOptions": {
-    "target": "ESNext",
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
     "lib": ["ESNext"],
-    "strict": true,
     "moduleResolution": "node",
-    "noEmit": true
+    "noEmit": true,
+    "strict": true,
+    "target": "ESNext",
+    "useDefineForClassFields": true
   }
 }
