@@ -4,9 +4,6 @@ node_modules/
 # Sensible data
 .env
 
-# Storage
-data/
-
 # Remix
 .cache/
 build/
