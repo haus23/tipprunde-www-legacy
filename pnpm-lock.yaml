@@ -82,6 +82,7 @@ importers:
       '@vitejs/plugin-react-swc': ^3.0.1
       autoprefixer: ^10.4.13
       postcss: ^8.4.21
+      radix-colors-plugin: workspace:*
       react: ^18.2.0
       react-dom: ^18.2.0
       tailwind-config: workspace:*
@@ -98,6 +99,7 @@ importers:
       '@vitejs/plugin-react-swc': 3.0.1_vite@4.0.4
       autoprefixer: 10.4.13_postcss@8.4.21
       postcss: 8.4.21
+      radix-colors-plugin: link:../../packages/radix-colors-plugin
       tailwind-config: link:../../packages/tailwind-config
       tailwindcss: 3.2.4_postcss@8.4.21
       typescript: 4.9.4
@@ -128,10 +130,8 @@ importers:
 
   packages/tailwind-config:
     specifiers:
-      radix-colors-plugin: workspace:*
       tailwindcss: ^3.2.4
     devDependencies:
-      radix-colors-plugin: link:../radix-colors-plugin
       tailwindcss: 3.2.4_postcss@8.4.21
 
   packages/typescript-config:
