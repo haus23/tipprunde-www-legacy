@@ -80,8 +80,12 @@ importers:
       '@types/react': ^18.0.27
       '@types/react-dom': ^18.0.10
       '@vitejs/plugin-react-swc': ^3.0.1
+      autoprefixer: ^10.4.13
+      postcss: ^8.4.21
       react: ^18.2.0
       react-dom: ^18.2.0
+      tailwind-config: workspace:*
+      tailwindcss: 3.2.4
       typescript: ~4.9.4
       typescript-config: workspace:*
       vite: ^4.0.4
@@ -92,6 +96,10 @@ importers:
       '@types/react': 18.0.27
       '@types/react-dom': 18.0.10
       '@vitejs/plugin-react-swc': 3.0.1_vite@4.0.4
+      autoprefixer: 10.4.13_postcss@8.4.21
+      postcss: 8.4.21
+      tailwind-config: link:../../packages/tailwind-config
+      tailwindcss: 3.2.4_postcss@8.4.21
       typescript: 4.9.4
       typescript-config: link:../../packages/typescript-config
       vite: 4.0.4
@@ -3979,6 +3987,22 @@ packages:
     hasBin: true
     dev: true
 
+  /autoprefixer/10.4.13_postcss@8.4.21:
+    resolution: {integrity: sha512-49vKpMqcZYsJjwotvt4+h/BCjJVnhGwcLpDt5xkcaOG3eLrG/HUYLagrihYsQ+qrIBgIzX1Rw7a6L8I/ZA1Atg==}
+    engines: {node: ^10 || ^12 || >=14}
+    hasBin: true
+    peerDependencies:
+      postcss: ^8.1.0
+    dependencies:
+      browserslist: 4.21.4
+      caniuse-lite: 1.0.30001446
+      fraction.js: 4.2.0
+      normalize-range: 0.1.2
+      picocolors: 1.0.0
+      postcss: 8.4.21
+      postcss-value-parser: 4.2.0
+    dev: true
+
   /available-typed-arrays/1.0.5:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==}
     engines: {node: '>= 0.4'}
@@ -6105,6 +6129,10 @@ packages:
   /forwarded/0.2.0:
     resolution: {integrity: sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==}
     engines: {node: '>= 0.6'}
+    dev: true
+
+  /fraction.js/4.2.0:
+    resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
     dev: true
 
   /fragment-cache/0.2.1:
@@ -8252,6 +8280,11 @@ packages:
 
   /normalize-path/3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
+    engines: {node: '>=0.10.0'}
+    dev: true
+
+  /normalize-range/0.1.2:
+    resolution: {integrity: sha512-bdok/XvKII3nUpklnV6P2hxtMNrCboOjAcyBuQnWEhO665FwrSNRxU+AqpsyvO6LgGYPspN+lu5CLtw4jPRKNA==}
     engines: {node: '>=0.10.0'}
     dev: true
 
