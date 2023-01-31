@@ -1,7 +1,7 @@
 {
   "name": "@haus23/dtp-types",
   "description": "Doing-The-Pools - Core library types",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/haus23/tipprunde",
