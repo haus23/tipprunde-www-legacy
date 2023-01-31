@@ -118,6 +118,12 @@ importers:
     devDependencies:
       tailwindcss: 3.2.4_postcss@8.4.21
 
+  packages/tailwind-config:
+    specifiers:
+      tailwindcss: ^3.2.4
+    devDependencies:
+      tailwindcss: 3.2.4_postcss@8.4.21
+
   packages/typescript-config:
     specifiers: {}
 

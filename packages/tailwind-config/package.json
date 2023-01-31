@@ -1,3 +1,7 @@
 {
-  "name": "tailwind-config"
+  "name": "tailwind-config",
+  "main": "tailwind.config.cjs",
+  "devDependencies": {
+    "tailwindcss": "^3.2.4"
+  }
 }
