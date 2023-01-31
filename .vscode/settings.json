@@ -5,7 +5,8 @@
     "*.css": "tailwindcss"
   },
   "tailwindCSS.experimental.configFile": {
-    "apps/www/tailwind.config.cjs": "apps/www/**"
+    "apps/www/tailwind.config.cjs": "apps/www/**",
+    "packages/ui/tailwind.config.cjs": "packages/ui/**"
   },
   "references.preferredLocation": "peek"
 }

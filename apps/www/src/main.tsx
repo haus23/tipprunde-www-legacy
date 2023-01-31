@@ -4,6 +4,8 @@ import App from './app';
 
 // Global styles
 import './styles/index.css';
+// UI styles
+import 'ui/dist/index.css';
 
 const appContainer = document.getElementById('app') as HTMLElement;
 

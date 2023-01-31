@@ -89,10 +89,12 @@ importers:
       tailwindcss: 3.2.4
       typescript: ~4.9.4
       typescript-config: workspace:*
+      ui: workspace:*
       vite: ^4.0.4
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      ui: link:../../packages/ui
     devDependencies:
       '@types/react': 18.0.27
       '@types/react-dom': 18.0.10
@@ -138,7 +140,30 @@ importers:
     specifiers: {}
 
   packages/ui:
-    specifiers: {}
+    specifiers:
+      '@types/react': ^18.0.27
+      '@types/react-dom': ^18.0.10
+      concurrently: ^7.6.0
+      radix-colors-plugin: workspace:*
+      react: ^18.2.0
+      react-dom: ^18.2.0
+      tailwind-config: workspace:*
+      tailwindcss: ^3.2.4
+      typescript: ~4.9.4
+      typescript-config: workspace:*
+      unbuild: ^1.1.1
+    devDependencies:
+      '@types/react': 18.0.27
+      '@types/react-dom': 18.0.10
+      concurrently: 7.6.0
+      radix-colors-plugin: link:../radix-colors-plugin
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      tailwind-config: link:../tailwind-config
+      tailwindcss: 3.2.4_postcss@8.4.21
+      typescript: 4.9.4
+      typescript-config: link:../typescript-config
+      unbuild: 1.1.1
 
 packages:
 

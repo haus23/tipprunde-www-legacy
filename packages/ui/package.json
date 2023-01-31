@@ -1,3 +1,29 @@
 {
-  "name": "ui"
+  "name": "ui",
+  "type": "module",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "pnpm run build:css && tsc",
+    "build:css": "tailwindcss -m -c tailwind.config.cjs -i styles.css -o dist/index.css",
+    "dev": "concurrently \"pnpm run dev:css\" \"tsc --watch\"",
+    "dev:css": "tailwindcss -w -c tailwind.config.cjs -i styles.css -o dist/index.css"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "concurrently": "^7.6.0",
+    "radix-colors-plugin": "workspace:*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwind-config": "workspace:*",
+    "tailwindcss": "^3.2.4",
+    "typescript": "~4.9.4",
+    "typescript-config": "workspace:*",
+    "unbuild": "^1.1.1"
+  }
 }
