@@ -7,6 +7,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@haus23/dtp-types": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
