@@ -78,12 +78,14 @@ importers:
   packages/dtp-types:
     specifiers:
       typescript: ~4.9.4
+      typescript-config: workspace:*
       unbuild: ^1.1.1
       zod: ^3.20.2
     dependencies:
       zod: 3.20.2
     devDependencies:
       typescript: 4.9.4
+      typescript-config: link:../typescript-config
       unbuild: 1.1.1
 
   packages/radix-colors-plugin:
@@ -94,6 +96,12 @@ importers:
       '@radix-ui/colors': 0.1.8
     devDependencies:
       tailwindcss: 3.2.4_postcss@8.4.21
+
+  packages/typescript-config:
+    specifiers: {}
+
+  packages/ui:
+    specifiers: {}
 
 packages:
 
