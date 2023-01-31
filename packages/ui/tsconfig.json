@@ -1,9 +1,0 @@
-{
-  "extends": "typescript-config/react.json",
-  "compilerOptions": {
-    "noEmit": false,
-    "outDir": "dist",
-    "declaration": true,
-    "sourceMap": true
-  }
-}

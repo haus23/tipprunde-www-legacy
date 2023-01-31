@@ -1,12 +1,14 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
+  "editor.quickSuggestions": {
+    "strings": true
+  },
   "files.associations": {
     "*.css": "tailwindcss"
   },
   "tailwindCSS.experimental.configFile": {
-    "apps/www/tailwind.config.cjs": "apps/www/**",
-    "packages/ui/tailwind.config.cjs": "packages/ui/**"
+    "apps/www/tailwind.config.cjs": "apps/www/**"
   },
   "references.preferredLocation": "peek"
 }

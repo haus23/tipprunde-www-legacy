@@ -31,7 +31,6 @@
   },
   "devDependencies": {
     "typescript": "~4.9.4",
-    "typescript-config": "workspace:*",
     "unbuild": "^1.1.1"
   }
 }
