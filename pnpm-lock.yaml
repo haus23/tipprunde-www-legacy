@@ -128,8 +128,10 @@ importers:
 
   packages/tailwind-config:
     specifiers:
+      radix-colors-plugin: workspace:*
       tailwindcss: ^3.2.4
     devDependencies:
+      radix-colors-plugin: link:../radix-colors-plugin
       tailwindcss: 3.2.4_postcss@8.4.21
 
   packages/typescript-config:
