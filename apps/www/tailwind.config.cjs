@@ -4,7 +4,10 @@ const radixColors = require('radix-colors-plugin');
 const config = {
   content: ['index.html', 'src/**/*.{ts,tsx}'],
   theme: {
-    colors: {},
+    colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+    },
   },
   darkMode: 'class',
   plugins: [
