@@ -4,6 +4,7 @@ node_modules/
 # Sensible data
 .env
 
+# TODO: remove the block after the switch to SPA web app
 # Remix
 .cache/
 build/
