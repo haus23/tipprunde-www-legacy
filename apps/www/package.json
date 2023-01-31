@@ -1,3 +1,14 @@
 {
-  "name": "www"
+  "name": "www",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "tsc && vite build"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "~4.9.4",
+    "typescript-config": "workspace:*",
+    "vite": "^4.0.4"
+  }
 }

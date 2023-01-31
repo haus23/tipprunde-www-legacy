@@ -75,6 +75,16 @@ importers:
       tailwindcss: 3.2.4_postcss@8.4.21
       typescript: 4.9.4
 
+  apps/www:
+    specifiers:
+      typescript: ~4.9.4
+      typescript-config: workspace:*
+      vite: ^4.0.4
+    devDependencies:
+      typescript: 4.9.4
+      typescript-config: link:../../packages/typescript-config
+      vite: 4.0.4
+
   packages/dtp-types:
     specifiers:
       typescript: ~4.9.4
