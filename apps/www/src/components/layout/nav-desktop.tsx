@@ -1,5 +1,5 @@
 import { NavLink, useParams } from 'react-router-dom';
-import { classes } from '../../utils/classes';
+import { classes } from '~/utils/classes';
 
 export default function NavDesktop({
   navItems,
