@@ -11,7 +11,10 @@ const config = {
   },
   darkMode: 'class',
   plugins: [
-    radixColors({ colors: ['violet', 'mauve'], mappings: { brand: 'violet', neutral: 'mauve' } }),
+    radixColors({
+      colors: ['violet', 'mauve', 'red'],
+      mappings: { brand: 'violet', neutral: 'mauve' },
+    }),
   ],
 };
 
