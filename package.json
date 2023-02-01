@@ -7,6 +7,7 @@
     "format": "prettier --ignore-path .gitignore --write **/*.{cjs,ts,tsx}"
   },
   "devDependencies": {
+    "@changesets/changelog-git": "^0.1.14",
     "@changesets/cli": "^2.26.0",
     "prettier": "^2.8.3",
     "turbo": "^1.7.0"
