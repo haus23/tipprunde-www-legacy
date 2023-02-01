@@ -154,6 +154,15 @@ const radixColorsPlugin = plugin.withOptions(
         Object.keys(radixColors[key]).forEach((color) => (obj[color] = `var(--${color})`));
         return obj;
       }, {});
+
+    // Add mappings
+    const mappings = options.mappings ?? {};
+    const mappedColors = {};
+    for (const [name, color] of Object.entries(mappings)) {
+      for (let scale = 1; scale <= 12; scale++) {
+        mappedColors[`${name}${scale}`] = `var(--${color}${scale})`;
+      }
+    }
     return {
       theme: {
         extend: {
@@ -161,6 +170,7 @@ const radixColorsPlugin = plugin.withOptions(
             radix: {
               ...filtered,
             },
+            ...mappedColors,
           },
         },
       },

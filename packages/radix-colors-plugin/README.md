@@ -54,11 +54,13 @@ You can add a semantic mapping:
 ```js
 plugins: [
     require("radix-colors-plugin")({
-      colors: ["blue", "cyan", "lime"],
+      colors: ["blue", "cyan", "lime", "violet", "mauve"],
       mappings: { "brand": "violet", "neutral": "mauve" }
     }),
 ],
 ```
+
+The mapped colors must be in the colors array.
 
 This will generate additional component classes `brand-bg`, `brand-bg-int`,`neutral-bg`, ... and
 the following helper classes:
