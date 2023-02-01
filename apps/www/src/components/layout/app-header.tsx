@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useChampionship } from '~/hooks/use-championship';
 import Logo from '../brand/logo';
 import NavDesktop from './nav-desktop';
 import NavMobile from './nav-mobile';
@@ -10,6 +11,8 @@ const navItems = [
 ];
 
 export default function AppHeader() {
+  const championship = useChampionship();
+
   return (
     <header className="flex px-4 h-14 sm:h-20 neutral-app-bg-subtl shadow border-b neutral-border">
       <div className="flex items-center gap-x-2">
@@ -21,6 +24,9 @@ export default function AppHeader() {
         </Link>
         <NavDesktop navItems={navItems} />
         <NavMobile navItems={navItems} />
+        <div className="sm:hidden">
+          <span className="text-xl font-semibold">{championship.name}</span>
+        </div>
       </div>
     </header>
   );
