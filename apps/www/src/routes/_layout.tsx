@@ -1,11 +1,11 @@
-import { MasterData } from '@haus23/dtp-types';
-import { Suspense } from 'react';
-import { Await, defer, Outlet, useLoaderData } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import AppHeader from '~/components/layout/app-header';
 
 export async function loader() {
   return fetch(`${import.meta.env.VITE_API_SERVER}/api/v1/masterdata`);
 }
+
+export const shouldRevalidateFunction = () => false;
 
 export default function RootLayout() {
   return (
