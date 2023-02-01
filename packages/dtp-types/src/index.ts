@@ -12,3 +12,6 @@ export * from './model/rules/extra-question-rule';
 export * from './model/rules/match-rule';
 export * from './model/rules/round-rule';
 export * from './model/rules/tip-rule';
+
+export * from './queries/masterdata';
+export * from './queries/standings';
