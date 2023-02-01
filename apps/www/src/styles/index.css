@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .bg-overlay {
+    background-color: hsla(300, 20%, 99%, 0.3);
+    @apply backdrop-blur-sm;
+  }
+
+  .dark .bg-overlay {
+    background-color: hsla(260, 25%, 11%, 0.3);
+    @apply backdrop-blur-sm;
+  }
+}

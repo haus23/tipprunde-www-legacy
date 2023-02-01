@@ -81,6 +81,7 @@ importers:
     specifiers:
       '@haus23/dtp-types': workspace:*
       '@heroicons/react': ^2.0.14
+      '@radix-ui/react-dialog': ^1.0.2
       '@types/react': ^18.0.27
       '@types/react-dom': ^18.0.10
       '@vitejs/plugin-react-swc': ^3.0.1
@@ -97,6 +98,7 @@ importers:
     dependencies:
       '@haus23/dtp-types': link:../../packages/dtp-types
       '@heroicons/react': 2.0.14_react@18.2.0
+      '@radix-ui/react-dialog': 1.0.2_5ndqzdd6t4rivxsukjv3i3ak2q
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-router-dom: 6.8.0_biqbaboplfbrettd7655fr4n2y
