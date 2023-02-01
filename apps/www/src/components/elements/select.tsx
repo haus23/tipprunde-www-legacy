@@ -1,3 +1,4 @@
+import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 import * as SelectPrimitive from '@radix-ui/react-select';
 
 type OptionType = { id: string } & Record<string, any>;
@@ -31,22 +32,40 @@ export function Select<T extends OptionType>({
 
   return (
     <SelectPrimitive.Root value={value} onValueChange={onValueChange}>
-      <SelectPrimitive.Trigger>
+      <SelectPrimitive.Trigger className="translate-y-[1px] grow sm:grow-0 basis-1/2 md:basis-1/3 inline-flex items-center justify-between font-semibold p-1 pl-2 rounded shadow brand-cta-int border-2 brand-border-int focus:outline-none focus:ring-4 focus:ring-brand7">
         <SelectPrimitive.Value />
-        <SelectPrimitive.Icon />
+        <SelectPrimitive.Icon>
+          <ChevronDownIcon className="h-5 w-5 brand-app-text-contrast" />
+        </SelectPrimitive.Icon>
       </SelectPrimitive.Trigger>
       <SelectPrimitive.Portal>
-        <SelectPrimitive.Content>
-          <SelectPrimitive.ScrollUpButton />
-          <SelectPrimitive.Viewport>
+        <SelectPrimitive.Content
+          position="popper"
+          align="end"
+          sideOffset={8}
+          collisionPadding={16}
+          className="select-content p-2 overflow-hidden neutral-app-bg-subtl rounded-md shadow-lg ring-1 ring-neutral6 ring-opacity-5 focus:outline-none"
+        >
+          <SelectPrimitive.ScrollUpButton className="flex justify-center">
+            <ChevronUpIcon className="h-5 w-5" />
+          </SelectPrimitive.ScrollUpButton>
+          <SelectPrimitive.Viewport className="p-1">
             {options.map((item) => (
-              <SelectPrimitive.Item key={item.id} value={item.id}>
+              <SelectPrimitive.Item
+                key={item.id}
+                value={item.id}
+                className="relative flex items-center justify-between space-x-2 my-1 py-1 pl-2 pr-8 cursor-pointer rounded focus:outline-none focus:ring-2 focus:ring-neutral7 data-[state=checked]:text-brand11"
+              >
                 <SelectPrimitive.ItemText>{displayFn(item)}</SelectPrimitive.ItemText>
-                <SelectPrimitive.ItemIndicator />
+                <SelectPrimitive.ItemIndicator className="absolute right-0">
+                  <CheckIcon className="p-1 h-6 w-6" />
+                </SelectPrimitive.ItemIndicator>
               </SelectPrimitive.Item>
             ))}
           </SelectPrimitive.Viewport>
-          <SelectPrimitive.ScrollDownButton />
+          <SelectPrimitive.ScrollDownButton className="flex justify-center">
+            <ChevronDownIcon className="h-5 w-5" />
+          </SelectPrimitive.ScrollDownButton>
         </SelectPrimitive.Content>
       </SelectPrimitive.Portal>
     </SelectPrimitive.Root>
