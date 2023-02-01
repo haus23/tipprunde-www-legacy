@@ -1,7 +1,7 @@
-import { MasterData } from '@haus23/dtp-types';
 import { useRouteLoaderData } from 'react-router-dom';
+import { LoaderReturnType } from '~/routes/_layout';
 
 export function useMasterdata() {
-  const data = useRouteLoaderData('root') as MasterData;
+  const data = useRouteLoaderData('root') as LoaderReturnType;
   return data;
 }

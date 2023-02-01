@@ -2,7 +2,10 @@ import { createBrowserRouter } from 'react-router-dom';
 import Matches from './routes/standings/matches';
 import Players from './routes/standings/players';
 import Ranking from './routes/standings/ranking';
-import StandingsLayout from './routes/standings/_layout';
+import StandingsLayout, {
+  loader as standingsLoader,
+  shouldRevalidate as shouldRevalidateStandings,
+} from './routes/standings/_layout';
 import ErrorBoundary from './routes/_error';
 import RootLayout, {
   loader as rootLoader,
@@ -19,7 +22,10 @@ export const appRouter = createBrowserRouter([
     errorElement: <ErrorBoundary />,
     children: [
       {
+        id: 'standings',
         path: ':championshipId?',
+        loader: standingsLoader,
+        shouldRevalidate: shouldRevalidateStandings,
         element: <StandingsLayout />,
         children: [
           { index: true, element: <Ranking /> },
