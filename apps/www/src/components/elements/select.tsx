@@ -18,7 +18,7 @@ type SelectProps<T extends OptionType, G extends OptionType> = {
   groupDisplayValue?: ExtractStringValueKeys<G> | ((elt: G) => string);
 };
 
-export function Select<T extends OptionType, G extends OptionType>({
+export default function Select<T extends OptionType, G extends OptionType>({
   value,
   onValueChange,
   options,

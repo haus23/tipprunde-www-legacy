@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import * as Accordion from '@radix-ui/react-accordion';
-import { Select } from '~/components/elements/select';
+import Select from '~/components/elements/select';
 import { useChampionship } from '~/hooks/use-championship';
 import { useMasterdata } from '~/hooks/use-masterdata';
 import { useStandings } from '~/hooks/use-standings';

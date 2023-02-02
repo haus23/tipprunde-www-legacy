@@ -5,7 +5,7 @@ import {
   ChevronUpDownIcon,
   ExclamationTriangleIcon,
 } from '@heroicons/react/24/outline';
-import { Select } from '~/components/elements/select';
+import Select from '~/components/elements/select';
 import { useChampionship } from '~/hooks/use-championship';
 import { useMasterdata } from '~/hooks/use-masterdata';
 import { useStandings } from '~/hooks/use-standings';
