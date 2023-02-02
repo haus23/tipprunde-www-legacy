@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useChampionship } from '~/hooks/use-championship';
 import Logo from '../brand/logo';
+import ThemeSwitch from '../commands/theme-switch';
 import NavDesktop from './nav-desktop';
 import NavMobile from './nav-mobile';
 
@@ -14,7 +15,7 @@ export default function AppHeader() {
   const championship = useChampionship();
 
   return (
-    <header className="flex px-4 h-14 sm:h-20 neutral-app-bg-subtl shadow border-b neutral-border">
+    <header className="flex justify-between px-4 h-16 sm:h-[80px] neutral-app-bg-subtl shadow border-b neutral-border">
       <div className="flex items-center gap-x-2">
         <Link to="/" className="hidden sm:block brand-app-text-contrast group focus:outline-none">
           <div className="flex items-center gap-x-2 p-1 rounded-lg group-focus:ring-4 group-focus:ring-neutral7">
@@ -27,6 +28,9 @@ export default function AppHeader() {
         <div className="sm:hidden">
           <span className="text-xl font-semibold">{championship.name}</span>
         </div>
+      </div>
+      <div className="flex items-center">
+        <ThemeSwitch />
       </div>
     </header>
   );
