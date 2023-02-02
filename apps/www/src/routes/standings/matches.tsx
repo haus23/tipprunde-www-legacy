@@ -1,16 +1,93 @@
-import { useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
+import {
+  ArrowDownIcon,
+  ArrowUpIcon,
+  ChevronUpDownIcon,
+  ExclamationTriangleIcon,
+} from '@heroicons/react/24/outline';
 import { Select } from '~/components/elements/select';
 import { useChampionship } from '~/hooks/use-championship';
 import { useMasterdata } from '~/hooks/use-masterdata';
 import { useStandings } from '~/hooks/use-standings';
+import { formatDate } from '~/utils/format-date';
+import { classes } from '~/utils/classes';
+import { ChampionshipTip } from '@haus23/dtp-types';
+
+// Table row type
+type TipRow = Partial<ChampionshipTip> & {
+  name: string;
+  info: boolean;
+};
+
+// Feature Sorting
+type SortColumn = 'name' | 'tip' | 'points';
+type SortOrder = number; // 0 -> absteigend, 1 -> unsortiert, 1 -> aufsteigend
+type SortSpec = { column?: SortColumn; order: SortOrder };
+
+function sortReducer(state: SortSpec, column: SortColumn): SortSpec {
+  if (column !== state.column) {
+    return { column, order: 2 };
+  } else {
+    return { column, order: (state.order + 1) % 3 };
+  }
+}
+function sortTips(tips: TipRow[], { column, order }: SortSpec) {
+  // No sort column or order is 1 -> no sorting
+  if (!column || order === 1) return tips;
+
+  const missingTips = tips.filter((t) => !t.tip);
+  const sortableTips = tips.filter((t) => Boolean(t.tip));
+
+  switch (column) {
+    case 'name':
+      return [...tips].sort((a, b) => a.name.localeCompare(b.name) * (order - 1));
+    case 'points':
+      return [
+        ...sortableTips.sort((a, b) => ((b.points || 0) - (a.points || 0)) * (order - 1)),
+        ...missingTips,
+      ];
+    case 'tip':
+      return [
+        ...sortableTips.sort((a, b) => {
+          const aGoals = a.tip!.split(':').map(Number);
+          const aDiff = aGoals[0] - aGoals[1];
+          const bGoals = b.tip!.split(':').map(Number);
+          const bDiff = bGoals[0] - bGoals[1];
+          return (bDiff - aDiff || bGoals[0] - aGoals[0]) * (order - 1);
+        }),
+        ...missingTips,
+      ];
+  }
+}
 
 export default function Matches() {
-  const { teams } = useMasterdata();
+  const { leagues, teams, players: masterPlayers } = useMasterdata();
   const championship = useChampionship();
-  const { matches, rounds } = useStandings();
+  const { matches, players, rounds, tips } = useStandings();
 
   const [matchId, setMatchId] = useState(matches[0].id);
   const match = matches.find((m) => m.id === matchId);
+
+  const playerTips: TipRow[] = players.map((p) => {
+    const tip = tips.find((t) => t.matchId === matchId && t.playerId === p.id);
+    return {
+      ...tip,
+      name: masterPlayers[p.playerId].name,
+      info: tip?.joker || tip?.lonelyHit || false,
+    };
+  });
+
+  const [sorting, changeSorting] = useReducer(sortReducer, {
+    column: undefined,
+    order: 0,
+  } as SortSpec);
+
+  useEffect(() => {
+    const matchId = championship.completed
+      ? matches[0].id
+      : [...matches].reverse().find((m) => m.result)?.id || matches[0].id;
+    setMatchId(matchId);
+  }, [championship, matches]);
 
   return (
     <>
@@ -34,6 +111,90 @@ export default function Matches() {
           groupDisplayValue={(item) => `Runde ${item.nr}`}
         />
       </header>
+      {match !== undefined && (
+        <div className="mx-2 md:mx-auto max-w-3xl mt-6 text-sm">
+          <div className="w-full flex justify-between">
+            <div className="space-y-1">
+              <p className="text-xs font-medium uppercase">Wann</p>
+              <p className="text-brand12 font-semibold">{formatDate(match.date)}</p>
+            </div>
+            <div className="space-y-1">
+              <p className="text-xs font-medium uppercase">Wo</p>
+              <p className="text-brand12 font-semibold">{leagues[match.leagueId].name}</p>
+            </div>
+            <div className="space-y-1">
+              <p className="text-xs font-medium uppercase">Ergebnis</p>
+              <p className="text-brand12 font-semibold">{match.result}</p>
+            </div>
+            <div className="space-y-1">
+              <p className="text-xs font-medium uppercase">Punkte</p>
+              <p className="text-brand12 font-semibold">{match.result && match.points}</p>
+            </div>
+          </div>
+          {rounds.find((r) => r.id === match.roundId)?.isDoubleRound ? (
+            <div className="mt-4 flex text-neutral11 justify-center gap-x-2">
+              <ExclamationTriangleIcon className="h-6 w-6" />
+              Das Spiel läuft in einer Doppelrunde.
+              <span className="hidden sm:block">Alle erzielten Punkte werden verdoppelt.</span>
+            </div>
+          ) : null}
+        </div>
+      )}
+      <table className="text-sm mt-6 w-full">
+        <thead className="text-xs bg-brand2">
+          <tr>
+            <th scope="col" className="w-full text-left py-3 px-4 md:px-6">
+              <button onClick={() => changeSorting('name')} className="relative">
+                <span className="font-medium uppercase pr-4">Spieler</span>
+                {sorting.column !== 'name' || sorting.order === 1 ? (
+                  <ChevronUpDownIcon className="absolute right-0 top-0 h-4 w-4" />
+                ) : sorting.order === 0 ? (
+                  <ArrowDownIcon className="absolute right-0 top-0 h-4 w-4" />
+                ) : (
+                  <ArrowUpIcon className="absolute right-0 top-0 h-4 w-4" />
+                )}
+              </button>
+            </th>
+            <th scope="col" className="text-center px-4 md:px-6 ">
+              <button onClick={() => changeSorting('tip')} className="relative">
+                <span className="font-medium uppercase pr-4">Tipp</span>
+                {sorting.column !== 'tip' || sorting.order === 1 ? (
+                  <ChevronUpDownIcon className="absolute right-0 top-0 h-4 w-4" />
+                ) : sorting.order === 0 ? (
+                  <ArrowDownIcon className="absolute right-0 top-0 h-4 w-4" />
+                ) : (
+                  <ArrowUpIcon className="absolute right-0 top-0 h-4 w-4" />
+                )}
+              </button>
+            </th>
+            <th scope="col" className="text-center px-4 md:px-6">
+              <button onClick={() => changeSorting('points')} className="relative">
+                <span className="font-medium uppercase pr-4">Punkte</span>
+                {sorting.column !== 'points' || sorting.order === 1 ? (
+                  <ChevronUpDownIcon className="absolute right-0 top-0 h-4 w-4" />
+                ) : sorting.order === 0 ? (
+                  <ArrowDownIcon className="absolute right-0 top-0 h-4 w-4" />
+                ) : (
+                  <ArrowUpIcon className="absolute right-0 top-0 h-4 w-4" />
+                )}
+              </button>
+            </th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-neutral6 font-semibold">
+          {sortTips(playerTips, sorting).map((t, ix) => (
+            <tr className={classes(t.info && 'brand-bg')} key={t.name}>
+              <td className="w-full py-3 px-4 md:px-6">{t.name}</td>
+              <td className="text-center px-4 md:px-6">{t.tip}</td>
+              <td className="text-center px-4 md:px-6">
+                <div className="relative">
+                  <span className="pr-4">{match?.result && t.points}</span>
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </>
   );
 }
