@@ -18,3 +18,11 @@
     max-height: var(--radix-select-content-available-height);
   }
 }
+
+html {
+  scrollbar-width: 0;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
