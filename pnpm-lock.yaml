@@ -81,6 +81,7 @@ importers:
     specifiers:
       '@haus23/dtp-types': workspace:*
       '@heroicons/react': ^2.0.14
+      '@radix-ui/react-accordion': ^1.1.0
       '@radix-ui/react-dialog': ^1.0.2
       '@radix-ui/react-select': ^1.2.0
       '@types/react': ^18.0.27
@@ -99,6 +100,7 @@ importers:
     dependencies:
       '@haus23/dtp-types': link:../../packages/dtp-types
       '@heroicons/react': 2.0.14_react@18.2.0
+      '@radix-ui/react-accordion': 1.1.0_biqbaboplfbrettd7655fr4n2y
       '@radix-ui/react-dialog': 1.0.2_5ndqzdd6t4rivxsukjv3i3ak2q
       '@radix-ui/react-select': 1.2.0_5ndqzdd6t4rivxsukjv3i3ak2q
       react: 18.2.0
