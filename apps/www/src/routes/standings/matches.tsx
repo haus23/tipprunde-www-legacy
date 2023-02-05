@@ -12,10 +12,13 @@ import { useStandings } from '~/hooks/use-standings';
 import { formatDate } from '~/utils/format-date';
 import { classes } from '~/utils/classes';
 import { ChampionshipTip } from '@haus23/dtp-types';
+import { Link, useParams } from 'react-router-dom';
+import { extractMatch } from '~/utils/extract-match';
 
 // Table row type
 type TipRow = Partial<ChampionshipTip> & {
   name: string;
+  nameLink: string;
   info: boolean;
 };
 
@@ -65,7 +68,17 @@ export default function Matches() {
   const championship = useChampionship();
   const { matches, players, rounds, tips } = useStandings();
 
-  const [matchId, setMatchId] = useState(matches[0].id);
+  const params = useParams();
+  const [matchId, setMatchId] = useState(
+    // Set initial match:
+    // With param: select match
+    // Without param: first match if championship completed otherwise last
+    () =>
+      extractMatch(params) ||
+      (championship.completed
+        ? matches[0].id
+        : [...matches].reverse().find((m) => m.result)?.id || matches[0].id)
+  );
   const match = matches.find((m) => m.id === matchId);
 
   const playerTips: TipRow[] = players.map((p) => {
@@ -73,6 +86,7 @@ export default function Matches() {
     return {
       ...tip,
       name: masterPlayers[p.playerId].name,
+      nameLink: p.playerId,
       info: tip?.joker || tip?.lonelyHit || false,
     };
   });
@@ -81,13 +95,6 @@ export default function Matches() {
     column: undefined,
     order: 0,
   } as SortSpec);
-
-  useEffect(() => {
-    const matchId = championship.completed
-      ? matches[0].id
-      : [...matches].reverse().find((m) => m.result)?.id || matches[0].id;
-    setMatchId(matchId);
-  }, [championship, matches]);
 
   return (
     <>
@@ -184,7 +191,9 @@ export default function Matches() {
         <tbody className="divide-y divide-neutral6 font-semibold">
           {sortTips(playerTips, sorting).map((t, ix) => (
             <tr className={classes(t.info && 'brand-bg')} key={t.name}>
-              <td className="w-full py-3 px-4 md:px-6">{t.name}</td>
+              <td className="w-full py-3 px-4 md:px-6 brand-app-text-contrast underline underline-offset-2">
+                <Link to={`../spieler/${t.nameLink}`}>{t.name}</Link>
+              </td>
               <td className="text-center px-4 md:px-6">{t.tip}</td>
               <td className="text-center px-4 md:px-6">
                 <div className="relative">
