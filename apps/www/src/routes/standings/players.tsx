@@ -6,13 +6,19 @@ import { useChampionship } from '~/hooks/use-championship';
 import { useMasterdata } from '~/hooks/use-masterdata';
 import { useStandings } from '~/hooks/use-standings';
 import { classes } from '~/utils/classes';
+import { useParams } from 'react-router-dom';
 
 export default function Players() {
+  const params = useParams();
   const { players: masterPlayers, teams } = useMasterdata();
   const championship = useChampionship();
   const { players, rounds, matches, tips } = useStandings();
 
-  const [playerId, setPlayerId] = useState(players[0].id);
+  const [playerId, setPlayerId] = useState(() =>
+    params.playerId
+      ? players.find((p) => p.playerId === params.playerId)?.id || players[0].id
+      : players[0].id
+  );
   const player = players.find((p) => p.id === playerId);
 
   // find current round

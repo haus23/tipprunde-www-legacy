@@ -29,7 +29,7 @@ export const appRouter = createBrowserRouter([
         element: <StandingsLayout />,
         children: [
           { index: true, element: <Ranking /> },
-          { path: 'spieler', element: <Players /> },
+          { path: 'spieler/:playerId?', element: <Players /> },
           { path: 'spiele', element: <Matches /> },
         ],
       },
