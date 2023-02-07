@@ -79,7 +79,7 @@ export default function Matches() {
   function changeMatch(id: string) {
     const match = matches.find((m) => m.id === id);
     navigate(
-      `${params.championshipId ? '/' + params.championshipId : ''}/spiele/${match?.nr}/${
+      `${params.championshipId ? '/' + params.championshipId : ''}/spiel/${match?.nr}/${
         match?.hometeamId
       }-${match?.awayteamId}`
     );

@@ -81,7 +81,7 @@ export default function Players() {
                         <tr className={classes(info && 'brand-bg')} key={m.id}>
                           <td className="w-full px-2 sm:px-4 md:px-6">
                             <Link
-                              to={`../spiele/${m.nr}/${m.hometeamId}-${m.awayteamId}`}
+                              to={`../spiel/${m.nr}/${m.hometeamId}-${m.awayteamId}`}
                               className="inline-block w-full py-2.5 hover:brand-app-text-contrast"
                             >
                               <span className="hidden sm:inline">

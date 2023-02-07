@@ -8,7 +8,7 @@ import NavMobile from './nav-mobile';
 const navItems = [
   { label: 'Tabelle', routeSegment: '', end: true },
   { label: 'Spieler', routeSegment: 'spieler', end: false },
-  { label: 'Spiele', routeSegment: 'spiele', end: false },
+  { label: 'Spiele', routeSegment: 'spiel', end: false },
 ];
 
 export default function AppHeader() {

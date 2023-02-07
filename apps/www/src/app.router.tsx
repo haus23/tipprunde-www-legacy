@@ -30,7 +30,7 @@ export const appRouter = createBrowserRouter([
         children: [
           { index: true, element: <Ranking /> },
           { path: 'spieler/:playerId?', element: <Players /> },
-          { path: 'spiele/:matchNr?/:lineup?', element: <Matches /> },
+          { path: 'spiel/:matchNr?/:lineup?', element: <Matches /> },
         ],
       },
     ],
