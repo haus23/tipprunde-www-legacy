@@ -65,7 +65,7 @@ export default function Select<T extends OptionType, G extends OptionType>({
                   <SelectPrimitive.Item
                     key={item.id}
                     value={item.id}
-                    className="relative flex items-center justify-between space-x-2 my-1 py-1 pl-2 pr-8 cursor-pointer rounded focus:outline-none focus:ring-2 focus:ring-neutral7 data-[state=checked]:text-brand11"
+                    className="select-none relative flex items-center justify-between space-x-2 my-1 py-1 pl-2 pr-8 cursor-pointer rounded focus:outline-none focus:ring-2 focus:ring-neutral7 data-[state=checked]:text-brand11"
                   >
                     <SelectPrimitive.ItemText>{displayFn(item)}</SelectPrimitive.ItemText>
                     <SelectPrimitive.ItemIndicator className="absolute right-0">
