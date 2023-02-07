@@ -1,5 +1,5 @@
-import { useReducer, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useReducer } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ChampionshipTip } from '@haus23/dtp-types';
 import {
   ArrowDownIcon,
@@ -68,20 +68,25 @@ export default function Matches() {
   const { matches, players, rounds, tips } = useStandings();
 
   const params = useParams();
-  const [matchId, setMatchId] = useState(
-    // Set initial match:
-    // With param: select match
-    // Without param: first match if championship completed otherwise last
-    () =>
-      (params.matchNr && matches.find((m) => String(m.nr) === params.matchNr)?.id) ||
-      (championship.completed
-        ? matches[0].id
-        : [...matches].reverse().find((m) => m.result)?.id || matches[0].id)
-  );
-  const match = matches.find((m) => m.id === matchId);
+  const navigate = useNavigate();
+
+  const match =
+    (params.matchNr && matches.find((m) => String(m.nr) === params.matchNr)) ||
+    (championship.completed
+      ? matches[0]
+      : [...matches].reverse().find((m) => m.result) || matches[0]);
+
+  function changeMatch(id: string) {
+    const match = matches.find((m) => m.id === id);
+    navigate(
+      `${params.championshipId ? '/' + params.championshipId : ''}/spiele/${match?.nr}/${
+        match?.hometeamId
+      }-${match?.awayteamId}`
+    );
+  }
 
   const playerTips: TipRow[] = players.map((p) => {
-    const tip = tips.find((t) => t.matchId === matchId && t.playerId === p.id);
+    const tip = tips.find((t) => t.matchId === match.id && t.playerId === p.id);
     return {
       ...tip,
       name: masterPlayers[p.playerId].name,
@@ -107,8 +112,8 @@ export default function Matches() {
         </h2>
         <Select
           options={matches}
-          value={matchId}
-          onValueChange={setMatchId}
+          value={match.id}
+          onValueChange={changeMatch}
           displayValue={(item) =>
             `${teams[item.hometeamId].shortname} - ${teams[item.awayteamId].shortname}`
           }

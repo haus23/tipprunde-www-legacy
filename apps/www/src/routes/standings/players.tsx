@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import * as Accordion from '@radix-ui/react-accordion';
 import Select from '~/components/elements/select';
@@ -6,19 +6,21 @@ import { useChampionship } from '~/hooks/use-championship';
 import { useMasterdata } from '~/hooks/use-masterdata';
 import { useStandings } from '~/hooks/use-standings';
 import { classes } from '~/utils/classes';
-import { Link, useParams } from 'react-router-dom';
 
 export default function Players() {
   const params = useParams();
+  const navigate = useNavigate();
   const { players: masterPlayers, teams } = useMasterdata();
   const championship = useChampionship();
   const { players, rounds, matches, tips } = useStandings();
 
-  const [playerId, setPlayerId] = useState(
-    () =>
-      (params.playerId && players.find((p) => p.playerId === params.playerId)?.id) || players[0].id
-  );
-  const player = players.find((p) => p.id === playerId);
+  const player =
+    (params.playerId && players.find((p) => p.playerId === params.playerId)) || players[0];
+
+  function changePlayer(id: string) {
+    const playerId = players.find((p) => p.id === id)?.playerId;
+    navigate(`${params.championshipId ? '/' + params.championshipId : ''}/spieler/${playerId}`);
+  }
 
   // find current round
   const currentRoundId = championship.completed
@@ -35,8 +37,8 @@ export default function Players() {
         </h2>
         <Select
           options={players}
-          value={playerId}
-          onValueChange={setPlayerId}
+          value={player.id}
+          onValueChange={changePlayer}
           displayValue={(item) => masterPlayers[item.playerId].name}
         />
       </header>
