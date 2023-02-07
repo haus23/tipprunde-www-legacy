@@ -69,7 +69,7 @@ export default function Players() {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-neutral6 font-semibold">
+                <tbody className="neutral-app-text divide-y divide-neutral6 font-semibold">
                   {matches
                     .filter((m) => m.roundId === r.id)
                     .map((m) => {
@@ -77,11 +77,12 @@ export default function Players() {
                       const info = tip?.joker || tip?.lonelyHit || false;
                       return (
                         <tr className={classes(info && 'brand-bg')} key={m.id}>
-                          <td className="w-full py-3 px-2 sm:px-4 md:px-6 brand-app-text-contrast underline underline-offset-2">
+                          <td className="w-full px-2 sm:px-4 md:px-6">
                             <Link
                               to={`../spiele/${m.id}-${teams[m.hometeamId].shortname}-${
                                 teams[m.awayteamId].shortname
                               }`}
+                              className="inline-block w-full py-2.5 hover:brand-app-text-contrast"
                             >
                               <span className="hidden sm:inline">
                                 {teams[m.hometeamId].name} - {teams[m.awayteamId].name}

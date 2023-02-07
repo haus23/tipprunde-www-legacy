@@ -188,11 +188,16 @@ export default function Matches() {
             </th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-neutral6 font-semibold">
+        <tbody className="neutral-app-text divide-y divide-neutral6 font-semibold">
           {sortTips(playerTips, sorting).map((t, ix) => (
             <tr className={classes(t.info && 'brand-bg')} key={t.name}>
-              <td className="w-full py-3 px-4 md:px-6 brand-app-text-contrast underline underline-offset-2">
-                <Link to={`../spieler/${t.nameLink}`}>{t.name}</Link>
+              <td className="w-full px-4 md:px-6 ">
+                <Link
+                  to={`../spieler/${t.nameLink}`}
+                  className="inline-block py-2.5 w-full hover:brand-app-text-contrast"
+                >
+                  {t.name}
+                </Link>
               </td>
               <td className="text-center px-4 md:px-6">{t.tip}</td>
               <td className="text-center px-4 md:px-6">
