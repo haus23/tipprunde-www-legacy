@@ -1,4 +1,6 @@
-import { useEffect, useReducer, useState } from 'react';
+import { useReducer, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { ChampionshipTip } from '@haus23/dtp-types';
 import {
   ArrowDownIcon,
   ArrowUpIcon,
@@ -11,9 +13,6 @@ import { useMasterdata } from '~/hooks/use-masterdata';
 import { useStandings } from '~/hooks/use-standings';
 import { formatDate } from '~/utils/format-date';
 import { classes } from '~/utils/classes';
-import { ChampionshipTip } from '@haus23/dtp-types';
-import { Link, useParams } from 'react-router-dom';
-import { extractMatch } from '~/utils/extract-match';
 
 // Table row type
 type TipRow = Partial<ChampionshipTip> & {
@@ -74,7 +73,7 @@ export default function Matches() {
     // With param: select match
     // Without param: first match if championship completed otherwise last
     () =>
-      extractMatch(params) ||
+      (params.matchNr && matches.find((m) => String(m.nr) === params.matchNr)?.id) ||
       (championship.completed
         ? matches[0].id
         : [...matches].reverse().find((m) => m.result)?.id || matches[0].id)
