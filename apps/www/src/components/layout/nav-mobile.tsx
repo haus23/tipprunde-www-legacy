@@ -47,10 +47,8 @@ export default function NavMobile({
                   end={item.end}
                   className={({ isActive }) =>
                     classes(
-                      isActive
-                        ? 'border-brand8 text-brand11'
-                        : 'border-transparent hover:border-neutral8 hover:text-brand12',
-                      'mx-2 p-2 font-semibold text-neutral11 border-l-4 focus:outline-neutral8'
+                      isActive ? 'border-brand8' : 'border-transparent hover:border-neutral8',
+                      'mx-2 p-2 font-semibold border-l-4 focus:outline-neutral8'
                     )
                   }
                 >
