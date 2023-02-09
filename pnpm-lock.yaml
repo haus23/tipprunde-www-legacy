@@ -14,14 +14,6 @@ importers:
       prettier: 2.8.4
       turbo: 1.7.4
 
-  apps/backstage:
-    specifiers:
-      typescript: ~4.9.5
-      vite: ^4.0.4
-    devDependencies:
-      typescript: 4.9.5
-      vite: 4.0.4
-
   apps/foh:
     specifiers:
       '@haus23/dtp-types': workspace:*
