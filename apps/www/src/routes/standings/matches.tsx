@@ -13,6 +13,7 @@ import { useMasterdata } from '~/hooks/use-masterdata';
 import { useStandings } from '~/hooks/use-standings';
 import { formatDate } from '~/utils/format-date';
 import { classes } from '~/utils/classes';
+import Tooltip from '~/components/elements/tooltip';
 
 // Table row type
 type TipRow = Partial<ChampionshipTip> & {
@@ -203,7 +204,17 @@ export default function Matches() {
                   {t.name}
                 </Link>
               </td>
-              <td className="text-center px-4 md:px-6">{t.tip}</td>
+              <td className="text-center px-4 md:px-6">
+                <div className="relative flex items-center justify-center">
+                  <span>{t.tip}</span>
+                  {t.info && (
+                    <Tooltip className="absolute right-0 translate-x-6">
+                      {t.joker === true && <p>Joker</p>}
+                      {t.lonelyHit === true && <p>Einziger richtiger Tipp</p>}
+                    </Tooltip>
+                  )}
+                </div>
+              </td>
               <td className="text-center px-4 md:px-6">
                 <div className="relative">
                   <span className="pr-4">{match?.result && t.points}</span>

@@ -1,11 +1,12 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon, InformationCircleIcon } from '@heroicons/react/24/outline';
 import * as Accordion from '@radix-ui/react-accordion';
 import Select from '~/components/elements/select';
 import { useChampionship } from '~/hooks/use-championship';
 import { useMasterdata } from '~/hooks/use-masterdata';
 import { useStandings } from '~/hooks/use-standings';
 import { classes } from '~/utils/classes';
+import Tooltip from '~/components/elements/tooltip';
 
 export default function Players() {
   const params = useParams();
@@ -93,7 +94,17 @@ export default function Players() {
                             </Link>
                           </td>
                           <td className="text-center px-2 sm:px-4 md:px-6">{m.result}</td>
-                          <td className="text-center px-2 sm:px-4 md:px-6">{tip?.tip}</td>
+                          <td className="text-center px-2 sm:px-4 md:px-6">
+                            <div className="relative flex items-center">
+                              <span>{tip?.tip}</span>
+                              {info && (
+                                <Tooltip className="absolute right-0 translate-x-6">
+                                  {tip?.joker === true && <p>Joker</p>}
+                                  {tip?.lonelyHit === true && <p>Einziger richtiger Tipp</p>}
+                                </Tooltip>
+                              )}
+                            </div>
+                          </td>
                           <td className="text-center px-2 sm:px-4 md:px-6">
                             {m.result && tip?.points}
                           </td>
