@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useChampionship } from '~/hooks/use-championship';
 import { useMasterdata } from '~/hooks/use-masterdata';
 import { useStandings } from '~/hooks/use-standings';
@@ -40,14 +41,21 @@ export default function Ranking() {
             </th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-neutral6 font-semibold">
+        <tbody className="neutral-app-text divide-y divide-neutral6 font-semibold">
           {players.map((p, ix, players) => {
             const currentRank =
               ix === 0 ? '1.' : p.rank !== players[ix - 1].rank ? `${p.rank}.` : '';
             return (
               <tr key={p.id}>
                 <td className="text-right px-4 md:px-6">{currentRank}</td>
-                <td className="w-full py-3 px-4 md:px-6">{masterPlayers[p.playerId].name}</td>
+                <td className="w-full px-4 md:px-6">
+                  <Link
+                    to={`spieler/${p.playerId}`}
+                    className="inline-block w-full py-2.5 hover:brand-app-text-contrast"
+                  >
+                    {masterPlayers[p.playerId].name}
+                  </Link>
+                </td>
                 {championship.completed && (
                   <td className="text-center px-4 md:px-6">{p.extraPoints}</td>
                 )}

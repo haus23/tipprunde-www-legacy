@@ -28,8 +28,8 @@ export default function NavMobile({
         </Button>
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 bg-overlay" />
-        <Dialog.Content className="fixed top-4 inset-x-4 neutral-app-bg-subtl rounded-md shadow-md ring-1 ring-neutral6 ring-opacity-5">
+        <Dialog.Overlay className="z-20 fixed inset-0 bg-overlay" />
+        <Dialog.Content className="z-20 fixed top-4 inset-x-4 neutral-app-bg-subtl rounded-md shadow-md ring-1 ring-neutral6 ring-opacity-5">
           <Dialog.Title className="sr-only">Hauptmenü</Dialog.Title>
           <nav className="divide-y divide-neutral6">
             <Link
@@ -47,10 +47,8 @@ export default function NavMobile({
                   end={item.end}
                   className={({ isActive }) =>
                     classes(
-                      isActive
-                        ? 'border-brand8 text-brand11'
-                        : 'border-transparent hover:border-neutral8 hover:text-brand12',
-                      'mx-2 p-2 font-semibold text-neutral11 border-l-4 focus:outline-neutral8'
+                      isActive ? 'border-brand8' : 'border-transparent hover:border-neutral8',
+                      'mx-2 p-2 font-semibold border-l-4 focus:outline-neutral8'
                     )
                   }
                 >

@@ -8,7 +8,7 @@ export default function NavDesktop({
 }) {
   const params = useParams();
   return (
-    <nav className="hidden sm:flex self-stretch items-center gap-x-2 mt-1">
+    <nav className="hidden font-semibold sm:flex self-stretch items-center gap-x-2 mt-1">
       {navItems.map((item) => (
         <NavLink
           key={item.label}

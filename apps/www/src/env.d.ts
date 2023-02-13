@@ -7,3 +7,8 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
+
+declare module 'command-score' {
+  function commandScore(value: string, search: string): number;
+  export = commandScore;
+}

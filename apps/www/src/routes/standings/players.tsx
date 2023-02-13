@@ -1,19 +1,27 @@
-import { useState } from 'react';
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { ChevronDownIcon, InformationCircleIcon } from '@heroicons/react/24/outline';
 import * as Accordion from '@radix-ui/react-accordion';
 import Select from '~/components/elements/select';
 import { useChampionship } from '~/hooks/use-championship';
 import { useMasterdata } from '~/hooks/use-masterdata';
 import { useStandings } from '~/hooks/use-standings';
 import { classes } from '~/utils/classes';
+import Tooltip from '~/components/elements/tooltip';
 
 export default function Players() {
+  const params = useParams();
+  const navigate = useNavigate();
   const { players: masterPlayers, teams } = useMasterdata();
   const championship = useChampionship();
   const { players, rounds, matches, tips } = useStandings();
 
-  const [playerId, setPlayerId] = useState(players[0].id);
-  const player = players.find((p) => p.id === playerId);
+  const player =
+    (params.playerId && players.find((p) => p.playerId === params.playerId)) || players[0];
+
+  function changePlayer(id: string) {
+    const playerId = players.find((p) => p.id === id)?.playerId;
+    navigate(`${params.championshipId ? '/' + params.championshipId : ''}/spieler/${playerId}`);
+  }
 
   // find current round
   const currentRoundId = championship.completed
@@ -30,8 +38,8 @@ export default function Players() {
         </h2>
         <Select
           options={players}
-          value={playerId}
-          onValueChange={setPlayerId}
+          value={player.id}
+          onValueChange={changePlayer}
           displayValue={(item) => masterPlayers[item.playerId].name}
         />
       </header>
@@ -64,7 +72,7 @@ export default function Players() {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-neutral6 font-semibold">
+                <tbody className="neutral-app-text divide-y divide-neutral6 font-semibold">
                   {matches
                     .filter((m) => m.roundId === r.id)
                     .map((m) => {
@@ -72,16 +80,31 @@ export default function Players() {
                       const info = tip?.joker || tip?.lonelyHit || false;
                       return (
                         <tr className={classes(info && 'brand-bg')} key={m.id}>
-                          <td className="w-full py-3 px-2 sm:px-4 md:px-6">
-                            <span className="hidden sm:inline">
-                              {teams[m.hometeamId].name} - {teams[m.awayteamId].name}
-                            </span>
-                            <span className="sm:hidden">
-                              {teams[m.hometeamId].shortname} - {teams[m.awayteamId].shortname}
-                            </span>
+                          <td className="w-full px-2 sm:px-4 md:px-6">
+                            <Link
+                              to={`../spiel/${m.nr}/${m.hometeamId}-${m.awayteamId}`}
+                              className="inline-block w-full py-2.5 hover:brand-app-text-contrast"
+                            >
+                              <span className="hidden sm:inline">
+                                {teams[m.hometeamId].name} - {teams[m.awayteamId].name}
+                              </span>
+                              <span className="sm:hidden">
+                                {teams[m.hometeamId].shortname} - {teams[m.awayteamId].shortname}
+                              </span>
+                            </Link>
                           </td>
                           <td className="text-center px-2 sm:px-4 md:px-6">{m.result}</td>
-                          <td className="text-center px-2 sm:px-4 md:px-6">{tip?.tip}</td>
+                          <td className="text-center px-2 sm:px-4 md:px-6">
+                            <div className="relative flex items-center">
+                              <span>{tip?.tip}</span>
+                              {info && (
+                                <Tooltip className="absolute right-0 translate-x-6">
+                                  {tip?.joker === true && <p>Joker</p>}
+                                  {tip?.lonelyHit === true && <p>Einziger richtiger Tipp</p>}
+                                </Tooltip>
+                              )}
+                            </div>
+                          </td>
                           <td className="text-center px-2 sm:px-4 md:px-6">
                             {m.result && tip?.points}
                           </td>
