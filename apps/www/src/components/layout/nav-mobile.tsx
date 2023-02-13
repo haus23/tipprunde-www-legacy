@@ -28,8 +28,8 @@ export default function NavMobile({
         </Button>
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 bg-overlay" />
-        <Dialog.Content className="fixed top-4 inset-x-4 neutral-app-bg-subtl rounded-md shadow-md ring-1 ring-neutral6 ring-opacity-5">
+        <Dialog.Overlay className="z-20 fixed inset-0 bg-overlay" />
+        <Dialog.Content className="z-20 fixed top-4 inset-x-4 neutral-app-bg-subtl rounded-md shadow-md ring-1 ring-neutral6 ring-opacity-5">
           <Dialog.Title className="sr-only">Hauptmenü</Dialog.Title>
           <nav className="divide-y divide-neutral6">
             <Link

@@ -47,7 +47,7 @@ export default function Select<T extends OptionType, G extends OptionType>({
       open={open}
       onOpenChange={setOpen}
     >
-      <SelectPrimitive.Trigger className="isolate z-20 translate-y-[1px] grow sm:grow-0 basis-1/2 lg:basis-1/3 inline-flex items-center justify-between font-semibold p-1 pl-2 rounded shadow brand-cta-int border-2 brand-border-int focus:outline-none focus:ring-4 focus:ring-brand7">
+      <SelectPrimitive.Trigger className="isolate z-10 translate-y-[1px] grow sm:grow-0 basis-1/2 lg:basis-1/3 inline-flex items-center justify-between font-semibold p-1 pl-2 rounded shadow brand-cta-int border-2 brand-border-int focus:outline-none focus:ring-4 focus:ring-brand7">
         <SelectPrimitive.Value />
         <SelectPrimitive.Icon>
           <ChevronDownIcon className="h-5 w-5 brand-app-text-contrast" />
@@ -62,7 +62,7 @@ export default function Select<T extends OptionType, G extends OptionType>({
             align="end"
             sideOffset={8}
             collisionPadding={16}
-            className="isolate z-20 select-content p-2 overflow-hidden neutral-app-bg-subtl rounded-md shadow-lg ring-1 ring-neutral6 ring-opacity-5 focus:outline-none"
+            className="isolate z-10 select-content p-2 overflow-hidden neutral-app-bg-subtl rounded-md shadow-lg ring-1 ring-neutral6 ring-opacity-5 focus:outline-none"
           >
             <SelectPrimitive.ScrollUpButton className="flex justify-center">
               <ChevronUpIcon className="h-5 w-5" />
