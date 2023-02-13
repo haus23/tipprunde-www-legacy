@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useChampionship } from '~/hooks/use-championship';
 import Logo from '../brand/logo';
+import ChampionshipSwitch from '../commands/championship-switch';
 import ThemeSwitch from '../commands/theme-switch';
 import NavDesktop from './nav-desktop';
 import NavMobile from './nav-mobile';
@@ -29,7 +30,8 @@ export default function AppHeader() {
           <span className="text-xl font-semibold">{championship.name}</span>
         </div>
       </div>
-      <div className="flex items-center">
+      <div className="flex items-center gap-x-2">
+        <ChampionshipSwitch />
         <ThemeSwitch />
       </div>
     </header>

@@ -1,0 +1,14 @@
+/* Align with overlay in ~/styles/index.css */
+[cmdk-overlay] {
+  background-color: hsla(300, 20%, 99%, 0.3);
+  @apply fixed inset-0 backdrop-blur-sm;
+}
+
+.dark [cmdk-overlay] {
+  background-color: hsla(260, 25%, 11%, 0.3);
+  @apply backdrop-blur-sm;
+}
+
+[cmdk-dialog] {
+  @apply z-20 fixed mx-auto max-w-xl top-4 inset-x-4 neutral-app-bg-subtl rounded-md shadow-md ring-1 ring-neutral6 ring-opacity-5 focus:outline-none;
+}
