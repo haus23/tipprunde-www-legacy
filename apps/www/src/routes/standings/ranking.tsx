@@ -1,4 +1,6 @@
+import { CalendarDaysIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
+import Tooltip from '~/components/elements/tooltip';
 import { useChampionship } from '~/hooks/use-championship';
 import { useMasterdata } from '~/hooks/use-masterdata';
 import { useStandings } from '~/hooks/use-standings';
@@ -39,6 +41,11 @@ export default function Ranking() {
                 {championship.completed ? 'Gesamt' : 'Punkte'}
               </span>
             </th>
+            {!championship.completed && (
+              <th>
+                <span className="sr-only">Aktuelle Spiele</span>
+              </th>
+            )}
           </tr>
         </thead>
         <tbody className="neutral-app-text divide-y divide-neutral6 font-semibold">
@@ -60,6 +67,11 @@ export default function Ranking() {
                   <td className="text-center px-4 md:px-6">{p.extraPoints}</td>
                 )}
                 <td className="text-center px-4 md:px-6">{p.totalPoints}</td>
+                {!championship.completed && (
+                  <td className="text-center px-4 md:px-6">
+                    <Tooltip icon={CalendarDaysIcon}>Aktuelle Spiele</Tooltip>
+                  </td>
+                )}
               </tr>
             );
           })}
