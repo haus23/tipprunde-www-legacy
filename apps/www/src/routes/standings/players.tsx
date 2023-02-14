@@ -10,6 +10,7 @@ import { useMasterdata } from '~/hooks/use-masterdata';
 import { useStandings } from '~/hooks/use-standings';
 import { classes } from '~/utils/classes';
 import { formatDate } from '~/utils/format-date';
+import { useEffect } from 'react';
 
 export default function Players() {
   const params = useParams();
@@ -20,6 +21,13 @@ export default function Players() {
 
   const player =
     (params.playerId && players.find((p) => p.playerId === params.playerId)) || players[0];
+
+  // Unknown player?
+  useEffect(() => {
+    if (params.playerId && player.playerId !== params.playerId) {
+      navigate(`${params.championshipId ? '/' + params.championshipId : ''}/spieler`);
+    }
+  }, [params, player]);
 
   function changePlayer(id: string) {
     const playerId = players.find((p) => p.id === id)?.playerId;
