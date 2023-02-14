@@ -9,6 +9,7 @@ import { useChampionship } from '~/hooks/use-championship';
 import { useMasterdata } from '~/hooks/use-masterdata';
 import { useStandings } from '~/hooks/use-standings';
 import { classes } from '~/utils/classes';
+import { formatDate } from '~/utils/format-date';
 
 export default function Players() {
   const params = useParams();
@@ -106,6 +107,12 @@ export default function Players() {
                 <table className="w-full text-sm">
                   <thead className="text-xs bg-brand2">
                     <tr>
+                      <th
+                        scope="col"
+                        className="hidden sm:table-cell text-center px-2 sm:px-4 md:px-6 "
+                      >
+                        <span className="font-medium uppercase">Datum</span>
+                      </th>
                       <th scope="col" className="w-full text-left py-3 px-2 sm:px-4 md:px-6">
                         <span className="font-medium uppercase">Spiel</span>
                       </th>
@@ -126,15 +133,18 @@ export default function Players() {
                       const info = tip?.joker || tip?.lonelyHit || false;
                       return (
                         <tr className={classes(info && 'brand-bg')} key={m.id}>
+                          <td className="hidden sm:table-cell text-center px-2 sm:px-4 md:px-6">
+                            {formatDate(m.date, { shortIfCurrent: true })}
+                          </td>
                           <td className="w-full px-2 sm:px-4 md:px-6">
                             <Link
                               to={`../spiel/${m.nr}/${m.hometeamId}-${m.awayteamId}`}
                               className="inline-block w-full py-2.5 hover:brand-app-text-contrast"
                             >
-                              <span className="hidden sm:inline">
+                              <span className="hidden md:inline">
                                 {teams[m.hometeamId].name} - {teams[m.awayteamId].name}
                               </span>
-                              <span className="sm:hidden">
+                              <span className="md:hidden">
                                 {teams[m.hometeamId].shortname} - {teams[m.awayteamId].shortname}
                               </span>
                             </Link>
