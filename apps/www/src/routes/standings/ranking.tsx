@@ -101,7 +101,7 @@ export default function Ranking() {
                               <div
                                 className={classes(
                                   'py-1 pl-2',
-                                  (tip.joker || tip.lonelyHit) && 'brand-bg'
+                                  (tip?.joker || tip?.lonelyHit) && 'brand-bg'
                                 )}
                               >
                                 {teams[m.hometeamId].shortname}-{teams[m.awayteamId].shortname}
@@ -109,18 +109,18 @@ export default function Ranking() {
                               <div
                                 className={classes(
                                   'py-1 text-center',
-                                  (tip.joker || tip.lonelyHit) && 'brand-bg'
+                                  (tip?.joker || tip?.lonelyHit) && 'brand-bg'
                                 )}
                               >
-                                {tip.tip}
+                                {tip?.tip}
                               </div>
                               <div
                                 className={classes(
                                   'py-1 text-center',
-                                  (tip.joker || tip.lonelyHit) && 'brand-bg'
+                                  (tip?.joker || tip?.lonelyHit) && 'brand-bg'
                                 )}
                               >
-                                {m.result && tip.points}
+                                {m.result && tip?.points}
                               </div>
                             </Fragment>
                           );
