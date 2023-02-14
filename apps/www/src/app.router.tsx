@@ -28,9 +28,9 @@ export const appRouter = createBrowserRouter([
         shouldRevalidate: shouldRevalidateStandings,
         element: <StandingsLayout />,
         children: [
-          { index: true, element: <Ranking /> },
-          { path: 'spieler/:playerId?', element: <Players /> },
-          { path: 'spiel/:matchNr?/:lineup?', element: <Matches /> },
+          { index: true, element: <Ranking />, handle: '' },
+          { path: 'spieler/:playerId?', element: <Players />, handle: '/spieler' },
+          { path: 'spiel/:matchNr?/:lineup?', element: <Matches />, handle: '/spiel' },
         ],
       },
     ],

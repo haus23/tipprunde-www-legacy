@@ -10,12 +10,19 @@ import './championship-switch.css';
 import { useChampionship } from '~/hooks/use-championship';
 import { Championship } from '@haus23/dtp-types';
 import { classes } from '~/utils/classes';
-import { useNavigate } from 'react-router-dom';
+import { useMatches, useNavigate, useParams } from 'react-router-dom';
 import Button from '../atoms/button';
 
 export default function ChampionshipSwitch() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+
+  const matches = useMatches();
+  const viewPage = matches[2].handle as string;
+
+  const params = useParams();
+  const playerPage = params.playerId ? `/${params.playerId}` : '';
+
   const { championships } = useMasterdata();
   const currentChampionship = useChampionship();
 
@@ -38,7 +45,7 @@ export default function ChampionshipSwitch() {
 
   function handleSelect(value: string) {
     setOpen(false);
-    navigate(`/${value}`);
+    navigate(`/${value}${viewPage}${playerPage}`);
   }
 
   return (
