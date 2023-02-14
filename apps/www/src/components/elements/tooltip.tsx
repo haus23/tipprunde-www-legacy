@@ -23,6 +23,7 @@ function Tooltip({
           side="top"
           sideOffset={2}
           align="end"
+          collisionPadding={4}
           className="px-4 py-2 brand-app-text-contrast neutral-app-bg-subtl rounded-md shadow-lg ring-1 ring-neutral6 ring-opacity-5 focus:outline-none"
         >
           <PopoverPrimitive.Arrow className="fill-neutral2" />
