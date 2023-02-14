@@ -145,7 +145,7 @@ export default function Matches() {
         {rounds.find((r) => r.id === match.roundId)?.isDoubleRound ? (
           <div className="mt-4 flex text-neutral11 justify-center gap-x-2">
             <Tooltip icon={ExclamationTriangleIcon} className="sm:hidden">
-              Alle erzielten Punkte werden verdoppelt.
+              <div className="px-4 py-2">Alle erzielten Punkte werden verdoppelt.</div>
             </Tooltip>
             Das Spiel läuft in einer Doppelrunde.
             <span className="hidden sm:block">Alle erzielten Punkte werden verdoppelt.</span>
@@ -209,8 +209,10 @@ export default function Matches() {
                   <span>{t.tip}</span>
                   {t.info && (
                     <Tooltip className="absolute right-0 translate-x-6">
-                      {t.joker === true && <p>Joker</p>}
-                      {t.lonelyHit === true && <p>Einziger richtiger Tipp</p>}
+                      <div className="px-4 py-2">
+                        {t.joker === true && <p>Joker</p>}
+                        {t.lonelyHit === true && <p>Einziger richtiger Tipp</p>}
+                      </div>
                     </Tooltip>
                   )}
                 </div>

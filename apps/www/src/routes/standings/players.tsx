@@ -163,8 +163,10 @@ export default function Players() {
                               <span>{tip?.tip}</span>
                               {info && (
                                 <Tooltip className="absolute right-0 translate-x-6">
-                                  {tip?.joker === true && <p>Joker</p>}
-                                  {tip?.lonelyHit === true && <p>Einziger richtiger Tipp</p>}
+                                  <div className="px-4 py-2">
+                                    {tip?.joker === true && <p>Joker</p>}
+                                    {tip?.lonelyHit === true && <p>Einziger richtiger Tipp</p>}
+                                  </div>
                                 </Tooltip>
                               )}
                             </div>
