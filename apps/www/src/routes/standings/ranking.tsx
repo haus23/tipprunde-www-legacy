@@ -1,19 +1,39 @@
+import { ChampionshipTip } from '@haus23/dtp-types';
 import { CalendarDaysIcon } from '@heroicons/react/24/outline';
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import Tooltip from '~/components/elements/tooltip';
 import { useChampionship } from '~/hooks/use-championship';
 import { useMasterdata } from '~/hooks/use-masterdata';
 import { useStandings } from '~/hooks/use-standings';
+import { classes } from '~/utils/classes';
 
 export default function Ranking() {
   const championship = useChampionship();
-  const { players: masterPlayers } = useMasterdata();
-  const { players } = useStandings();
+  const { players: masterPlayers, teams } = useMasterdata();
+  const { players, matches, tips } = useStandings();
+
+  const matchesSortedByDate = [...matches].sort((a, b) => a.date.localeCompare(b.date));
+  const nextMatchNr =
+    matchesSortedByDate.findIndex((m) => !m.result) + 1 || matchesSortedByDate.length + 1;
+  const currentMatches = matchesSortedByDate.slice(
+    Math.max(0, nextMatchNr - 3),
+    Math.min(matchesSortedByDate.length, nextMatchNr + 1)
+  );
+
+  const currentTips = {} as Record<string, any>;
+  currentMatches.forEach((m) => {
+    currentTips[m.id] = {} as Record<string, ChampionshipTip>;
+    players.forEach((p) => {
+      const tip = tips.find((t) => t.matchId === m.id && t.playerId === p.id);
+      currentTips[m.id][p.id] = tip;
+    });
+  });
 
   return (
     <>
       <header className="flex items-center gap-x-2 sm:gap-x-4 mx-2 sm:mx-0">
-        <h2 className="flex gap-x-2 text-xl font-semibold tracking-tight py-1">
+        <h2 className="flex gap-x-2 text-xl font-semibold tracking-tight pb-1">
           <span className="hidden sm:block">{championship.name} -</span>
           <span>{championship.completed ? 'Abschlusstabelle' : 'Aktuelle Tabelle'}</span>
         </h2>
@@ -68,8 +88,45 @@ export default function Ranking() {
                 )}
                 <td className="text-center px-4 md:px-6">{p.totalPoints}</td>
                 {!championship.completed && (
-                  <td className="text-center px-4 md:px-6">
-                    <Tooltip icon={CalendarDaysIcon}>Aktuelle Spiele</Tooltip>
+                  <td>
+                    <Tooltip icon={CalendarDaysIcon} className="flex items-center pr-2">
+                      <div className="text-sm grid grid-cols-[1fr_repeat(2,_auto)] w-[240px] pb-2">
+                        <div className="py-2 pl-2 border-b neutral-border">Spiel</div>
+                        <div className="p-2 text-center border-b neutral-border">Tipp</div>
+                        <div className="p-2 text-center border-b neutral-border">Pkt</div>
+                        {currentMatches.map((m) => {
+                          const tip = currentTips[m.id][p.id] as ChampionshipTip;
+                          return (
+                            <Fragment key={m.id}>
+                              <div
+                                className={classes(
+                                  'py-1 pl-2',
+                                  (tip.joker || tip.lonelyHit) && 'brand-bg'
+                                )}
+                              >
+                                {teams[m.hometeamId].shortname}-{teams[m.awayteamId].shortname}
+                              </div>
+                              <div
+                                className={classes(
+                                  'py-1 text-center',
+                                  (tip.joker || tip.lonelyHit) && 'brand-bg'
+                                )}
+                              >
+                                {tip.tip}
+                              </div>
+                              <div
+                                className={classes(
+                                  'py-1 text-center',
+                                  (tip.joker || tip.lonelyHit) && 'brand-bg'
+                                )}
+                              >
+                                {m.result && tip.points}
+                              </div>
+                            </Fragment>
+                          );
+                        })}
+                      </div>
+                    </Tooltip>
                   </td>
                 )}
               </tr>
