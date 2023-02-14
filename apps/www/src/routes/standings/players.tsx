@@ -1,12 +1,14 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { ChevronDownIcon, InformationCircleIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import * as Accordion from '@radix-ui/react-accordion';
+
 import Select from '~/components/elements/select';
+import Tooltip from '~/components/elements/tooltip';
+
 import { useChampionship } from '~/hooks/use-championship';
 import { useMasterdata } from '~/hooks/use-masterdata';
 import { useStandings } from '~/hooks/use-standings';
 import { classes } from '~/utils/classes';
-import Tooltip from '~/components/elements/tooltip';
 
 export default function Players() {
   const params = useParams();
@@ -28,6 +30,8 @@ export default function Players() {
     ? undefined
     : [...matches].reverse().find((m) => m.result)?.roundId;
 
+  const playedMatches = matches.filter((m) => m.result).length;
+
   return (
     <>
       <header className="flex items-center gap-x-2 sm:gap-x-4 mx-2 sm:mx-0">
@@ -43,39 +47,81 @@ export default function Players() {
           displayValue={(item) => masterPlayers[item.playerId].name}
         />
       </header>
+      <div className="mx-2 md:mx-auto max-w-3xl mt-6 text-sm">
+        <div className="w-full flex justify-between">
+          <div className="space-y-1">
+            <p className="text-xs font-medium uppercase">Platz</p>
+            <p className="text-center brand-app-text-contrast font-semibold">{`${player.rank}.`}</p>
+          </div>
+          <div className="space-y-1">
+            <p className="px-4 text-xs font-medium uppercase">Spiele</p>
+            <p className="text-center brand-app-text-contrast font-semibold">{`${playedMatches} (${matches.length})`}</p>
+          </div>
+          <div className="space-y-1">
+            <p className="text-xs font-medium uppercase">Punkte</p>
+            <p className="text-center brand-app-text-contrast font-semibold">{player.points}</p>
+          </div>
+          <div className="space-y-1">
+            <p className="text-xs font-medium uppercase">Schnitt</p>
+            <p className="text-center brand-app-text-contrast font-semibold">{`${(
+              player.points / playedMatches
+            ).toFixed(2)}`}</p>
+          </div>
+        </div>
+      </div>
       <Accordion.Root type="single" collapsible className="mt-6" defaultValue={currentRoundId}>
-        {rounds.map((r) => (
-          <Accordion.Item key={r.id} value={r.id} className="mt-1 first:mt-0">
-            <Accordion.Header>
-              <Accordion.Trigger className="group block w-full brand-bg-int py-2 px-4">
-                <div className="flex items-center justify-between">
-                  <span className="block">{`Runde ${r.nr}`}</span>
-                  <ChevronDownIcon className="h-6 w-6 transition-transform transform group-data-[state=open]:rotate-180" />
-                </div>
-              </Accordion.Trigger>
-            </Accordion.Header>
-            <Accordion.Content>
-              <table className="w-full text-sm">
-                <thead className="text-xs bg-brand2">
-                  <tr>
-                    <th scope="col" className="w-full text-left py-3 px-2 sm:px-4 md:px-6">
-                      <span className="font-medium uppercase">Spiel</span>
-                    </th>
-                    <th scope="col" className="text-center px-2 sm:px-4 md:px-6 ">
-                      <span className="font-medium uppercase">Ergebnis</span>
-                    </th>
-                    <th scope="col" className="text-center px-2 sm:px-4 md:px-6 ">
-                      <span className="font-medium uppercase">Tipp</span>
-                    </th>
-                    <th scope="col" className="text-center px-2 sm:px-4 md:px-6">
-                      <span className="font-medium uppercase">Punkte</span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="neutral-app-text divide-y divide-neutral6 font-semibold">
-                  {matches
-                    .filter((m) => m.roundId === r.id)
-                    .map((m) => {
+        {rounds.map((r) => {
+          const matchesInRound = matches.filter((m) => m.roundId === r.id);
+          const matchIds = matchesInRound.map((m) => m.id);
+          const playedMatchesInRound = matchesInRound.filter((m) => m.result).length;
+          const tipsInRound = tips.filter(
+            (t) => matchIds.includes(t.matchId) && t.playerId === player.id
+          );
+          const pointsPerRound = tipsInRound.reduce((sum, t) => (sum += Number(t.points)), 0);
+          return (
+            <Accordion.Item key={r.id} value={r.id} className="mt-1 first:mt-0">
+              <Accordion.Header>
+                <Accordion.Trigger className="group block w-full brand-bg-int py-2 px-4">
+                  <div className="flex items-center justify-between font-semibold">
+                    <span className="block">{`Runde ${r.nr}`}</span>
+                    <div className="flex items-center gap-x-4">
+                      <div className="text-sm flex gap-x-4">
+                        <div className="flex gap-x-2">
+                          <span className="hidden sm:block">Punkte:</span>
+                          <span className="sm:hidden -translate-y-[2px]">&#x2211;</span>
+                          {pointsPerRound}
+                        </div>
+                        <div className="flex gap-x-2">
+                          <span className="hidden sm:block">Schnitt:</span>
+                          <span className="sm:hidden">&#x2300;</span>
+                          {(pointsPerRound / playedMatchesInRound).toFixed(2)}
+                        </div>
+                      </div>
+                      <ChevronDownIcon className="h-6 w-6 transition-transform transform group-data-[state=open]:rotate-180" />
+                    </div>
+                  </div>
+                </Accordion.Trigger>
+              </Accordion.Header>
+              <Accordion.Content>
+                <table className="w-full text-sm">
+                  <thead className="text-xs bg-brand2">
+                    <tr>
+                      <th scope="col" className="w-full text-left py-3 px-2 sm:px-4 md:px-6">
+                        <span className="font-medium uppercase">Spiel</span>
+                      </th>
+                      <th scope="col" className="text-center px-2 sm:px-4 md:px-6 ">
+                        <span className="font-medium uppercase">Ergebnis</span>
+                      </th>
+                      <th scope="col" className="text-center px-2 sm:px-4 md:px-6 ">
+                        <span className="font-medium uppercase">Tipp</span>
+                      </th>
+                      <th scope="col" className="text-center px-2 sm:px-4 md:px-6">
+                        <span className="font-medium uppercase">Punkte</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="neutral-app-text divide-y divide-neutral6 font-semibold">
+                    {matchesInRound.map((m) => {
                       const tip = tips.find((t) => t.matchId === m.id && t.playerId === player?.id);
                       const info = tip?.joker || tip?.lonelyHit || false;
                       return (
@@ -111,11 +157,12 @@ export default function Players() {
                         </tr>
                       );
                     })}
-                </tbody>
-              </table>
-            </Accordion.Content>
-          </Accordion.Item>
-        ))}
+                  </tbody>
+                </table>
+              </Accordion.Content>
+            </Accordion.Item>
+          );
+        })}
       </Accordion.Root>
     </>
   );
