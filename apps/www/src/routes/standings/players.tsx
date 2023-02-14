@@ -88,7 +88,7 @@ export default function Players() {
                       <div className="text-sm flex gap-x-4">
                         <div className="flex gap-x-2">
                           <span className="hidden sm:block">Punkte:</span>
-                          <span className="sm:hidden -translate-y-[2px]">&#x2211;</span>
+                          <span className="sm:hidden">&#x2211;</span>
                           {pointsPerRound}
                         </div>
                         <div className="flex gap-x-2">
