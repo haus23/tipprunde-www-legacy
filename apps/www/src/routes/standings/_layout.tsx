@@ -5,7 +5,14 @@ export type LoaderReturnType = Standings;
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const championshipId = params.championshipId || 'current';
-  return fetch(`${import.meta.env.VITE_API_SERVER}/api/v1/standings/${championshipId}`);
+
+  const res = await fetch(`${import.meta.env.VITE_API_SERVER}/api/v1/standings/${championshipId}`);
+
+  if (res.status === 404) {
+    throw new Response('Not Found', { status: 404 });
+  }
+
+  return res.json();
 }
 
 export const shouldRevalidate: ShouldRevalidateFunction = ({ currentParams, nextParams }) =>
