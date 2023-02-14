@@ -123,35 +123,35 @@ export default function Matches() {
           groupDisplayValue={(item) => `Runde ${item.nr}`}
         />
       </header>
-      {match !== undefined && (
-        <div className="mx-2 md:mx-auto max-w-3xl mt-6 text-sm">
-          <div className="w-full flex justify-between">
-            <div className="space-y-1">
-              <p className="text-xs font-medium uppercase">Wann</p>
-              <p className="text-brand12 font-semibold">{formatDate(match.date)}</p>
-            </div>
-            <div className="space-y-1">
-              <p className="text-xs font-medium uppercase">Wo</p>
-              <p className="text-brand12 font-semibold">{leagues[match.leagueId].name}</p>
-            </div>
-            <div className="space-y-1">
-              <p className="text-xs font-medium uppercase">Ergebnis</p>
-              <p className="text-brand12 font-semibold">{match.result}</p>
-            </div>
-            <div className="space-y-1">
-              <p className="text-xs font-medium uppercase">Punkte</p>
-              <p className="text-brand12 font-semibold">{match.result && match.points}</p>
-            </div>
+      <div className="mx-2 md:mx-auto max-w-3xl mt-6 text-sm">
+        <div className="w-full flex justify-between">
+          <div className="space-y-1">
+            <p className="text-xs font-medium uppercase">Wann</p>
+            <p className="text-brand12 font-semibold">{formatDate(match.date)}</p>
           </div>
-          {rounds.find((r) => r.id === match.roundId)?.isDoubleRound ? (
-            <div className="mt-4 flex text-neutral11 justify-center gap-x-2">
-              <ExclamationTriangleIcon className="h-6 w-6" />
-              Das Spiel läuft in einer Doppelrunde.
-              <span className="hidden sm:block">Alle erzielten Punkte werden verdoppelt.</span>
-            </div>
-          ) : null}
+          <div className="space-y-1">
+            <p className="text-xs font-medium uppercase">Wo</p>
+            <p className="text-brand12 font-semibold">{leagues[match.leagueId].name}</p>
+          </div>
+          <div className="space-y-1">
+            <p className="text-xs font-medium uppercase">Ergebnis</p>
+            <p className="text-brand12 font-semibold">{match.result}</p>
+          </div>
+          <div className="space-y-1">
+            <p className="text-xs font-medium uppercase">Punkte</p>
+            <p className="text-brand12 font-semibold">{match.result && match.points}</p>
+          </div>
         </div>
-      )}
+        {rounds.find((r) => r.id === match.roundId)?.isDoubleRound ? (
+          <div className="mt-4 flex text-neutral11 justify-center gap-x-2">
+            <Tooltip icon={ExclamationTriangleIcon} className="sm:hidden">
+              Alle erzielten Punkte werden verdoppelt.
+            </Tooltip>
+            Das Spiel läuft in einer Doppelrunde.
+            <span className="hidden sm:block">Alle erzielten Punkte werden verdoppelt.</span>
+          </div>
+        ) : null}
+      </div>
       <table className="text-sm mt-6 w-full">
         <thead className="text-xs bg-brand2">
           <tr>
