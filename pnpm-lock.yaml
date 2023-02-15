@@ -84,6 +84,7 @@ importers:
       autoprefixer: ^10.4.13
       cmdk: ^0.1.22
       command-score: ^0.1.2
+      framer-motion: ^9.0.3
       postcss: ^8.4.21
       radix-colors-plugin: workspace:*
       react: ^18.2.0
@@ -103,6 +104,7 @@ importers:
       '@radix-ui/react-select': 1.2.0_5ndqzdd6t4rivxsukjv3i3ak2q
       cmdk: 0.1.22_5ndqzdd6t4rivxsukjv3i3ak2q
       command-score: 0.1.2
+      framer-motion: 9.0.3_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-router-dom: 6.8.1_biqbaboplfbrettd7655fr4n2y
@@ -5990,6 +5992,21 @@ packages:
 
   /framer-motion/8.5.5_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-5IDx5bxkjWHWUF3CVJoSyUVOtrbAxtzYBBowRE2uYI/6VYhkEBD+rbTHEGuUmbGHRj6YqqSfoG7Aa1cLyWCrBA==}
+    peerDependencies:
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    dependencies:
+      '@motionone/dom': 10.15.5
+      hey-listen: 1.0.8
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      tslib: 2.5.0
+    optionalDependencies:
+      '@emotion/is-prop-valid': 0.8.8
+    dev: false
+
+  /framer-motion/9.0.3_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-QcMWXcwvBmInzFpkIgtLx8VQ/+H9+EhiHVgnx6zsOWTGmcvzFqkrw6SLTZn5fKejCaf3RznqkshhxXipBpe9ig==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
