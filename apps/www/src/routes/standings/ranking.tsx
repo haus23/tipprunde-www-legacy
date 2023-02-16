@@ -89,7 +89,11 @@ export default function Ranking() {
                 <td className="text-center px-4 md:px-6">{p.totalPoints}</td>
                 {!championship.completed && (
                   <td>
-                    <Tooltip icon={CalendarDaysIcon} className="flex items-center pr-2">
+                    <Tooltip
+                      icon={CalendarDaysIcon}
+                      ariaLabel={`Aktuelle Tipps von ${masterPlayers[p.playerId].name}`}
+                      className="flex items-center pr-2"
+                    >
                       <div className="text-sm grid grid-cols-[1fr_repeat(2,_auto)] w-[240px] pb-2">
                         <div className="py-2 pl-2 border-b neutral-border">Spiel</div>
                         <div className="p-2 text-center border-b neutral-border">Tipp</div>

@@ -23,7 +23,7 @@ export default function NavMobile({
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
-        <Button color="brand" className="sm:hidden p-1.5">
+        <Button color="brand" className="sm:hidden p-1.5" aria-label="Hauptmenu anzeigen">
           <Bars3Icon className="h-6 w-6" />
         </Button>
       </Dialog.Trigger>

@@ -46,7 +46,7 @@ export default function ThemeSwitch() {
   return (
     <DropDownMenu.Root>
       <DropDownMenu.Trigger asChild>
-        <Button color="brand" className="p-1.5">
+        <Button color="brand" className="p-1.5" aria-label="Farbschema wählen">
           <MoonIcon className="h-6 w-6 hidden dark:block" />
           <SunIcon className="h-6 w-6 block dark:hidden" />
         </Button>

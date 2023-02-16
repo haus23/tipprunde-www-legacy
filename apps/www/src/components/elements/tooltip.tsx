@@ -7,16 +7,21 @@ function Tooltip({
   children,
   className,
   icon,
+  ariaLabel,
 }: {
   children: ReactNode;
   className?: string;
   icon?: ElementType;
+  ariaLabel?: string;
 }) {
   const TriggerIcon = icon || InformationCircleIcon;
 
   return (
     <PopoverPrimitive.Root>
-      <PopoverPrimitive.Trigger className={classes(className, 'focus:outline-none')}>
+      <PopoverPrimitive.Trigger
+        aria-label={ariaLabel}
+        className={classes(className, 'focus:outline-none')}
+      >
         <TriggerIcon className="h-5 w-5" />
       </PopoverPrimitive.Trigger>
       <PopoverPrimitive.Portal>

@@ -54,6 +54,7 @@ export default function ChampionshipSwitch() {
         onClick={() => setOpen(true)}
         color="brand"
         className=" flex items-center gap-x-2 p-1.5 sm:px-4"
+        aria-label="Turnier ändern"
       >
         <MagnifyingGlassIcon className="h-6 w-6" />
         <span className="hidden sm:block">Turnier</span>
