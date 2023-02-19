@@ -22,9 +22,5 @@ export const shouldRevalidate: ShouldRevalidateFunction = ({ currentParams, next
   currentParams.championshipId !== nextParams.championshipId;
 
 export default function StandingsLayout() {
-  return (
-    <>
-      <Outlet />
-    </>
-  );
+  return <Outlet />;
 }
