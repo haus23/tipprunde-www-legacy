@@ -1,8 +1,5 @@
-import { MasterData } from '@haus23/dtp-types';
 import { Outlet, ScrollRestoration } from 'react-router-dom';
 import AppHeader from '~/components/layout/app-header';
-
-export type LoaderReturnType = MasterData;
 
 export async function loader() {
   return fetch(`${import.meta.env.VITE_API_SERVER}/api/v1/masterdata`);

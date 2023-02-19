@@ -1,7 +1,4 @@
-import { Standings } from '@haus23/dtp-types';
 import { LoaderFunctionArgs, Outlet, ShouldRevalidateFunction } from 'react-router-dom';
-
-export type LoaderReturnType = Standings;
 
 export async function loader({ params }: LoaderFunctionArgs) {
   if (params.championshipId && !/^[a-z]{2}\d{4}$/.test(params.championshipId)) {

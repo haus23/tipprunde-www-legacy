@@ -1,7 +1,6 @@
 import { useRouteLoaderData } from 'react-router-dom';
-import { LoaderReturnType } from '~/routes/standings/_layout';
+import { Standings } from '@haus23/dtp-types';
 
 export function useStandings() {
-  const data = useRouteLoaderData('standings') as LoaderReturnType;
-  return data;
+  return useRouteLoaderData('standings') as Standings;
 }
