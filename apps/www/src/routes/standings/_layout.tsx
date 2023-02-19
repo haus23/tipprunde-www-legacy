@@ -4,8 +4,11 @@ import { LoaderFunctionArgs, Outlet, ShouldRevalidateFunction } from 'react-rout
 export type LoaderReturnType = Standings;
 
 export async function loader({ params }: LoaderFunctionArgs) {
-  const championshipId = params.championshipId || 'current';
+  if (params.championshipId && !/^[a-z]{2}\d{4}$/.test(params.championshipId)) {
+    throw new Response('Not Found', { status: 404 });
+  }
 
+  const championshipId = params.championshipId || 'current';
   const res = await fetch(`${import.meta.env.VITE_API_SERVER}/api/v1/standings/${championshipId}`);
 
   if (res.status === 404) {
