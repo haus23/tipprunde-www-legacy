@@ -1,5 +1,11 @@
 # dtp-types
 
+## 1.2.1
+
+### Patch Changes
+
+- Update deps.
+
 ## 1.2.0
 
 ### Minor Changes
