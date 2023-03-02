@@ -27,7 +27,7 @@ importers:
       '@types/react-dom': ^18.0.10
       '@vitejs/plugin-react-swc': ^3.1.0
       autoprefixer: ^10.4.13
-      cmdk: ^0.1.22
+      cmdk: ^0.2.0
       command-score: ^0.1.2
       postcss: ^8.4.21
       radix-colors-plugin: workspace:*
@@ -46,7 +46,7 @@ importers:
       '@radix-ui/react-dropdown-menu': 2.0.2_5ndqzdd6t4rivxsukjv3i3ak2q
       '@radix-ui/react-popover': 1.0.3_5ndqzdd6t4rivxsukjv3i3ak2q
       '@radix-ui/react-select': 1.2.0_5ndqzdd6t4rivxsukjv3i3ak2q
-      cmdk: 0.1.22_5ndqzdd6t4rivxsukjv3i3ak2q
+      cmdk: 0.2.0_5ndqzdd6t4rivxsukjv3i3ak2q
       command-score: 0.1.2
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -2096,8 +2096,8 @@ packages:
     engines: {node: '>=0.8'}
     dev: true
 
-  /cmdk/0.1.22_5ndqzdd6t4rivxsukjv3i3ak2q:
-    resolution: {integrity: sha512-F0ffliBO/U6SXKGRud9AjsNuINvfF+d9BVUgi/y2+v3TSBHVOmIXl43CWLEyEEIOwc2DTnlXvIQenhGAEpwW0Q==}
+  /cmdk/0.2.0_5ndqzdd6t4rivxsukjv3i3ak2q:
+    resolution: {integrity: sha512-JQpKvEOb86SnvMZbYaFKYhvzFntWBeSZdyii0rZPhKJj9uwJBxu4DaVYDrRN7r3mPop56oPhRw+JYWTKs66TYw==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0

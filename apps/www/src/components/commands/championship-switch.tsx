@@ -85,7 +85,7 @@ export default function ChampionshipSwitch() {
               value={c.id}
               onSelect={handleSelect}
               className={classes(
-                'flex items-center justify-between cursor-default select-none px-4 py-2 font-semibold rounded-md aria-selected:neutral-bg',
+                'flex items-center justify-between cursor-default select-none px-4 py-2 font-semibold rounded-md data-[selected=true]:neutral-bg',
                 currentChampionship.id === c.id && 'brand-app-text'
               )}
             >
