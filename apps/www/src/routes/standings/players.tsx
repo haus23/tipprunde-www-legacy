@@ -35,9 +35,21 @@ export default function Players() {
   }
 
   // find current round
-  const currentRoundId = championship.completed
-    ? undefined
-    : [...matches].reverse().find((m) => m.result)?.roundId;
+  let currentRoundId: string | undefined = undefined;
+  if (!championship.completed) {
+    // Find last played match
+    const match = [...matches].reverse().find((m) => m.result);
+    if (!match) {
+      // No match played, but is there a first round?
+      if (rounds.length > 0) {
+        currentRoundId = rounds[0].id;
+      }
+    } else {
+      // Test if there is already a next round match
+      const matchIx = matches.indexOf(match);
+      currentRoundId = matches.at(matchIx + 1)?.roundId || match.roundId;
+    }
+  }
 
   const playedMatches = matches.filter((m) => m.result).length;
 
@@ -72,9 +84,9 @@ export default function Players() {
           </div>
           <div className="space-y-1">
             <p className="text-xs font-medium uppercase">Schnitt</p>
-            <p className="text-center brand-app-text-contrast font-semibold">{`${(
-              player.points / playedMatches
-            ).toFixed(2)}`}</p>
+            <p className="text-center brand-app-text-contrast font-semibold">{`${
+              playedMatches ? (player.points / playedMatches).toFixed(2) : ''
+            }`}</p>
           </div>
         </div>
       </div>
@@ -94,18 +106,20 @@ export default function Players() {
                   <div className="flex items-center justify-between font-semibold">
                     <span className="block">{`Runde ${r.nr}`}</span>
                     <div className="flex items-center gap-x-4">
-                      <div className="text-sm flex gap-x-4">
-                        <div className="flex gap-x-2">
-                          <span className="hidden sm:block">Punkte:</span>
-                          <span className="sm:hidden">&#x2211;</span>
-                          {pointsPerRound}
+                      {playedMatchesInRound > 0 && (
+                        <div className="text-sm flex gap-x-4">
+                          <div className="flex gap-x-2">
+                            <span className="hidden sm:block">Punkte:</span>
+                            <span className="sm:hidden">&#x2211;</span>
+                            {pointsPerRound}
+                          </div>
+                          <div className="flex gap-x-2">
+                            <span className="hidden sm:block">Schnitt:</span>
+                            <span className="sm:hidden">&#x2300;</span>
+                            {(pointsPerRound / playedMatchesInRound).toFixed(2)}
+                          </div>
                         </div>
-                        <div className="flex gap-x-2">
-                          <span className="hidden sm:block">Schnitt:</span>
-                          <span className="sm:hidden">&#x2300;</span>
-                          {(pointsPerRound / playedMatchesInRound).toFixed(2)}
-                        </div>
-                      </div>
+                      )}
                       <ChevronDownIcon className="h-6 w-6 transition-transform transform group-data-[state=open]:rotate-180" />
                     </div>
                   </div>
