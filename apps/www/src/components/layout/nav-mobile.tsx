@@ -6,6 +6,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import Button from '../atoms/button';
 import { classes } from '~/utils/classes';
 import Logo from '../brand/logo';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export default function NavMobile({
   navItems,
@@ -27,41 +28,61 @@ export default function NavMobile({
           <Bars3Icon className="h-6 w-6" />
         </Button>
       </Dialog.Trigger>
-      <Dialog.Portal>
-        <Dialog.Overlay className="z-20 fixed inset-0 bg-overlay" />
-        <Dialog.Content className="z-20 fixed top-4 inset-x-4 neutral-app-bg-subtl rounded-md shadow-md ring-1 ring-neutral6 ring-opacity-5">
-          <Dialog.Title className="sr-only">Hauptmenü</Dialog.Title>
-          <nav className="divide-y divide-neutral6">
-            <Link
-              to="/"
-              className="inline-flex items-center gap-x-2 px-2 py-4 focus:outline-neutral8"
+      <AnimatePresence>
+        {open && (
+          <Dialog.Portal forceMount>
+            <Dialog.Overlay asChild className="z-20 fixed inset-0 bg-overlay">
+              <motion.div
+                transition={{ duration: 0.3 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              />
+            </Dialog.Overlay>
+            <Dialog.Content
+              asChild
+              className="z-20 fixed top-4 inset-x-4 neutral-app-bg-subtl rounded-md shadow-md ring-1 ring-neutral6 ring-opacity-5"
             >
-              <Logo className="h-8" />
-              <h1 className="text-xl font-semibold">runde.tips</h1>
-            </Link>
-            <div className="flex flex-col gap-y-2 py-4">
-              {navItems.map((item) => (
-                <NavLink
-                  key={item.label}
-                  to={[params.championshipId, item.routeSegment].filter(Boolean).join('/')}
-                  end={item.end}
-                  className={({ isActive }) =>
-                    classes(
-                      isActive ? 'border-brand8' : 'border-transparent hover:border-neutral8',
-                      'mx-2 p-2 font-semibold border-l-4 focus:outline-neutral8'
-                    )
-                  }
-                >
-                  <span className="">{item.label}</span>
-                </NavLink>
-              ))}
-            </div>
-          </nav>
-          <Dialog.DialogClose className="absolute top-4 right-4 p-1 focus:outline-neutral8">
-            <XMarkIcon className="h-6 w-6" />
-          </Dialog.DialogClose>
-        </Dialog.Content>
-      </Dialog.Portal>
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0 }}
+              >
+                <Dialog.Title className="sr-only">Hauptmenü</Dialog.Title>
+                <nav className="divide-y divide-neutral6">
+                  <Link
+                    to="/"
+                    className="inline-flex items-center gap-x-2 px-2 py-4 focus:outline-neutral8"
+                  >
+                    <Logo className="h-8" />
+                    <h1 className="text-xl font-semibold">runde.tips</h1>
+                  </Link>
+                  <div className="flex flex-col gap-y-2 py-4">
+                    {navItems.map((item) => (
+                      <NavLink
+                        key={item.label}
+                        to={[params.championshipId, item.routeSegment].filter(Boolean).join('/')}
+                        end={item.end}
+                        className={({ isActive }) =>
+                          classes(
+                            isActive ? 'border-brand8' : 'border-transparent hover:border-neutral8',
+                            'mx-2 p-2 font-semibold border-l-4 focus:outline-neutral8'
+                          )
+                        }
+                      >
+                        <span className="">{item.label}</span>
+                      </NavLink>
+                    ))}
+                  </div>
+                </nav>
+                <Dialog.DialogClose className="absolute top-4 right-4 p-1 focus:outline-neutral8">
+                  <XMarkIcon className="h-6 w-6" />
+                </Dialog.DialogClose>
+              </motion.div>
+            </Dialog.Content>
+          </Dialog.Portal>
+        )}
+      </AnimatePresence>
     </Dialog.Root>
   );
 }
