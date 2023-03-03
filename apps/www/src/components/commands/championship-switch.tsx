@@ -18,7 +18,7 @@ export default function ChampionshipSwitch() {
   const navigate = useNavigate();
 
   const matches = useMatches();
-  const viewPage = matches[2].handle as string;
+  const viewPage = (matches.at(2)?.handle as string) || '';
 
   const params = useParams();
   const playerPage = params.playerId ? `/${params.playerId}` : '';

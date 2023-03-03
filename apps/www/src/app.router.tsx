@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+import Login from './routes/auth/login';
 import Matches from './routes/standings/matches';
 import Players from './routes/standings/players';
 import Ranking from './routes/standings/ranking';
@@ -32,6 +33,10 @@ export const appRouter = createBrowserRouter([
           { path: 'spieler/:playerId?', element: <Players />, handle: '/spieler' },
           { path: 'spiel/:matchNr?/:lineup?', element: <Matches />, handle: '/spiel' },
         ],
+      },
+      {
+        path: 'login',
+        element: <Login />,
       },
     ],
   },
