@@ -11,7 +11,7 @@ const config = {
   },
   darkMode: 'class',
   plugins: [
-    require('@tailwindcss/forms'),
+    require('@tailwindcss/forms')({ strategy: 'class' }),
     radixColors({
       colors: ['violet', 'mauve', 'red', 'green'],
       mappings: { brand: 'violet', neutral: 'mauve' },

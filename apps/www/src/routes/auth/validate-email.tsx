@@ -106,7 +106,7 @@ export default function ValidateEmail() {
             <input
               ref={emailFldRef}
               className={classes(
-                'peer block w-full rounded-md border-0 py-1.5 neutral-app-bg brand-app-text-contrast shadow-sm ring-1 ring-neutral7 ring-inset placeholder:neutral-app-text focus:ring-2 focus:ring-inset focus:ring-brand7 sm:text-sm sm:leading-6',
+                'form-input peer block w-full rounded-md border-0 py-1.5 neutral-app-bg brand-app-text-contrast shadow-sm ring-1 ring-neutral7 ring-inset placeholder:neutral-app-text focus:ring-2 focus:ring-inset focus:ring-brand7 sm:text-sm sm:leading-6',
                 'data-[validated]:invalid:pr-10 data-[validated]:invalid:text-radix-red12 data-[validated]:invalid:ring-radix-red7 data-[validated]:invalid:focus:ring-radix-red7'
               )}
               id="email"
