@@ -1,12 +1,11 @@
-import { useState } from 'react';
-import { useRef } from 'react';
-import { FormEvent } from 'react';
+import { FormEvent, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircleIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline';
 
 import Button from '~/components/atoms/button';
 import { useMasterdata } from '~/hooks/use-masterdata';
 import { classes } from '~/utils/classes';
+import { sendLogOnEmailLink } from '~/firebase/auth';
 
 export default function Login() {
   const emailFldRef = useRef<HTMLInputElement>(null);
@@ -15,6 +14,12 @@ export default function Login() {
   const [error, setError] = useState('');
 
   const { players } = useMasterdata();
+
+  async function handleFirebaseAuth(email: string) {
+    // Docs: https://firebase.google.com/docs/auth/web/email-link-auth?authuser=0
+    await sendLogOnEmailLink(email);
+    window.localStorage.setItem('emailForSignIn', email);
+  }
 
   function handleSubmit(ev: FormEvent) {
     ev.preventDefault();
@@ -32,6 +37,7 @@ export default function Login() {
           emailFldRef.current.setCustomValidity('Unbekannte Email-Adresse');
           setError('Unbekannte Email-Adresse');
         } else {
+          handleFirebaseAuth(emailFldRef.current.value);
           setTimeout(() => setMailSent(true), 500);
         }
       }
@@ -45,10 +51,14 @@ export default function Login() {
       </div>
       <p>Du hast jetzt von uns eine Mail mit einem Anmelde-Link erhalten.</p>
       <p>
-        Du kannst dich mit einem Click hier anmelden. Und bleibst das auch in dem jeweiligen
-        Browser.
+        Du kannst dich mit einem Click hier anmelden. Und bleibst das auch in dem jeweiligen Gerät
+        bzw. Browser, mit dem du den Link öffnest.
       </p>
       <p>Ein Passwort wird nicht benötigt.</p>
+      <p>
+        Der Link kann allerdings nur einmal benutzt werden, du kannst also die Email mit dem Link
+        auch gleich nach der Anmeldung löschen.
+      </p>
       <Link to="/" className="block mt-4 brand-app-text hover:underline">
         Zur Startseite
       </Link>
