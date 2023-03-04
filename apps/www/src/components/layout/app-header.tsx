@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useChampionship } from '~/hooks/use-championship';
 import Logo from '../brand/logo';
 import ChampionshipSwitch from '../commands/championship-switch';
+import LogOnOffSwitch from '../commands/logonoff-switch';
 import ThemeSwitch from '../commands/theme-switch';
 import NavDesktop from './nav-desktop';
 import NavMobile from './nav-mobile';
@@ -33,6 +34,7 @@ export default function AppHeader() {
       <div className="flex items-center gap-x-2">
         <ChampionshipSwitch />
         <ThemeSwitch />
+        <LogOnOffSwitch />
       </div>
     </header>
   );
