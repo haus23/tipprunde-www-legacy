@@ -19,9 +19,9 @@ export default function LogOnOffSwitch() {
   return (
     <Button onClick={handleLogOnOff} color="brand" className="p-1.5" aria-label="Farbschema wählen">
       {isAnonymous ? (
-        <UserIcon className="h-6 w-6" />
+        <UserIcon className="h-5 w-5 md:h-6 md:w-6" />
       ) : (
-        <ArrowRightOnRectangleIcon className="h-6 w-6" />
+        <ArrowRightOnRectangleIcon className="h-5 w-5 md:h-6 md:w-6" />
       )}
     </Button>
   );

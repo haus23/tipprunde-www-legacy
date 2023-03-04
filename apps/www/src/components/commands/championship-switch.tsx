@@ -53,11 +53,11 @@ export default function ChampionshipSwitch() {
       <Button
         onClick={() => setOpen(true)}
         color="brand"
-        className=" flex items-center gap-x-2 p-1.5 sm:px-4"
+        className=" flex items-center gap-x-2 p-1.5 md:px-4"
         aria-label="Turnier ändern"
       >
-        <MagnifyingGlassIcon className="h-6 w-6" />
-        <span className="hidden sm:block">Turnier</span>
+        <MagnifyingGlassIcon className="h-5 w-5 md:h-6 md:w-6" />
+        <span className="hidden md:block">Turnier</span>
       </Button>
       <Command.Dialog
         open={open}

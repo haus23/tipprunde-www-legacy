@@ -17,12 +17,12 @@ export default function AppHeader() {
   const championship = useChampionship();
 
   return (
-    <header className="flex justify-between px-4 h-16 sm:h-[80px] neutral-app-bg-subtl shadow border-b neutral-border">
+    <header className="flex justify-between px-2 sm:px-4 h-16 sm:h-[80px] neutral-app-bg-subtl shadow border-b neutral-border">
       <div className="flex items-center gap-x-2">
         <Link to="/" className="hidden sm:block brand-app-text-contrast group focus:outline-none">
           <div className="flex items-center gap-x-2 p-1 rounded-lg group-focus:ring-4 group-focus:ring-neutral7">
-            <Logo className="h-8 sm:h-10" />
-            <h1 className="p-2 text-xl font-semibold">runde.tips</h1>
+            <Logo className="h-8 md:h-10" />
+            <h1 className="py-2 text-xl font-semibold">runde.tips</h1>
           </div>
         </Link>
         <NavDesktop navItems={navItems} />
