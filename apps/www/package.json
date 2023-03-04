@@ -16,11 +16,14 @@
     "@radix-ui/react-select": "^1.2.0",
     "cmdk": "^0.2.0",
     "command-score": "^0.1.2",
+    "firebase": "^9.17.2",
+    "jotai": "^2.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.2"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react-swc": "^3.2.0",
