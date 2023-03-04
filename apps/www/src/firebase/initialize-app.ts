@@ -1,8 +1,9 @@
 import {
+  FirebaseApp,
   FirebaseOptions,
-  getApp,
+  getApp as getFirebaseApp,
   getApps,
-  initializeApp as initializeFirebase,
+  initializeApp as initializeFirebaseApp,
 } from 'firebase/app';
 
 const options: FirebaseOptions = {
@@ -14,8 +15,15 @@ const options: FirebaseOptions = {
   appId: import.meta.env.VITE_FB_APP_ID,
 };
 
-export function initializeApp() {
-  if (getApps().length === 0) {
-    initializeFirebase(options);
+let app: FirebaseApp;
+export function getApp() {
+  if (!app) {
+    app = getApps().length === 0 ? initializeFirebaseApp(options) : getFirebaseApp();
   }
+  return app;
 }
+
+// Convenience wrapper to initialize firebase imperatively in main.tsx
+export const initializeApp = () => {
+  getApp();
+};
