@@ -47,7 +47,7 @@ export default function Ranking() {
             <th scope="col" className="w-full text-left px-4 md:px-6">
               <span className="font-medium uppercase">Name</span>
             </th>
-            {championship.completed && (
+            {(championship.completed || championship.extraTipsPublished) && (
               <th scope="col" className="text-center px-4 md:px-6 ">
                 <span className="font-medium uppercase hidden sm:inline">Zusatzpunkte</span>
                 <span className="font-medium uppercase sm:hidden">Zusatzpkt</span>
@@ -55,10 +55,12 @@ export default function Ranking() {
             )}
             <th scope="col" className="text-center px-4 md:px-6 ">
               <span className="font-medium uppercase hidden sm:inline">
-                {championship.completed ? 'Gesamtpunkte' : 'Punkte'}
+                {championship.completed || championship.extraTipsPublished
+                  ? 'Gesamtpunkte'
+                  : 'Punkte'}
               </span>
               <span className="font-medium uppercase sm:hidden">
-                {championship.completed ? 'Gesamt' : 'Punkte'}
+                {championship.completed || championship.extraTipsPublished ? 'Gesamt' : 'Punkte'}
               </span>
             </th>
             {!championship.completed && (
@@ -83,7 +85,7 @@ export default function Ranking() {
                     {masterPlayers[p.playerId].name}
                   </Link>
                 </td>
-                {championship.completed && (
+                {(championship.completed || championship.extraTipsPublished) && (
                   <td className="text-center px-4 md:px-6">{p.extraPoints}</td>
                 )}
                 <td className="text-center px-4 md:px-6">{p.totalPoints}</td>

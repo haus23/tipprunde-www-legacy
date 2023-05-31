@@ -9,6 +9,7 @@ export const Championship = z.object({
   rulesId: z.string(),
   published: z.boolean(),
   completed: z.boolean(),
+  extraTipsPublished: z.boolean(),
 });
 
 export type Championship = z.infer<typeof Championship>;
